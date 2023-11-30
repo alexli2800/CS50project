@@ -34,12 +34,6 @@ else:
 
 @app.route("/")
 def index():
-
-    owned = db.execute(
-        "SELECT * FROM food WHERE user_id = ? AND symbol = ?",
-            user_id,
-            symbol,
-    )
     sourcream = data[0]['Recipe_Name']
     return sourcream
 
