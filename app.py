@@ -228,7 +228,6 @@ def lunch():
                             OR location_name LIKE '%Currier%'
                             OR location_name LIKE '%Annenberg%')
                             AND meal_time LIKE '%Lunch%'
-                            AND meal_category LIKE '%Entree%'
                             AND date = ?
                         """, (formatted_date))
         print(lunch_menu)
