@@ -81,11 +81,11 @@ def login():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username", 400)
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password", 400)
 
         # Query database for username
         rows = db.execute(
@@ -96,7 +96,7 @@ def login():
         if len(rows) != 1 or not check_password_hash(
             rows[0]["hash"], request.form.get("password")
         ):
-            return apology("invalid username and/or password", 403)
+            return apology("invalid username and/or password", 400)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -129,19 +129,19 @@ def register():
         elif password != request.form.get("confirmation"):
             return apology("Passwords do not match", 400)
 
-        elif len(password) < 8:
-            return apology("Password must be at least 8 characters", 400)
+        #elif len(password) < 8:
+        #    return apology("Password must be at least 8 characters", 400)
 
-        digit = re.findall("\d", password)
-        if not digit:
-            return apology("Password must have at least one digit", 400)
+        #digit = re.findall("\d", password)
+        #if not digit:
+        #    return apology("Password must have at least one digit", 400)
 
-        spec_char = re.findall("[!@#$%]", password)
-        if not spec_char:
-            return apology(
-                "Password must contain at least one special character (!, @, #, $, %)",
-                400,
-            )
+        #spec_char = re.findall("[!@#$%]", password)
+        #if not spec_char:
+            #return apology(
+                #"Password must contain at least one special character (!, @, #, $, %)",
+                #400,
+            #)
 
         # Query database for username
         rows = db.execute(
@@ -174,15 +174,18 @@ def register():
 
 @app.route("/")
 @login_required
-def index():
+def home():
+    user_id = session["user_id"]
     # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
     # first we need to be able to loop through the API and generate a list of say, the menu items
     # to do this we need to index through everything, specify what we want, and return all those values in a single list
     # then export the data to food.db
-    recipe_names = []
-    for item in data:
-        recipe_names.append(item['Recipe_Name'])
-    return recipe_names
+    #recipe_names = []
+    #for item in data:
+    #    recipe_names.append(item['Recipe_Name'])
+    #return recipe_names
+
+    return render_template("home.html")
 
 
