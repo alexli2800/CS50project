@@ -34,14 +34,16 @@ else:
 
 @app.route("/")
 def index():
+    # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
-    owned = db.execute(
-        "SELECT * FROM food WHERE user_id = ? AND symbol = ?",
-            user_id,
-            symbol,
-    )
-    sourcream = data[0]['Recipe_Name']
-    return sourcream
+    # first we need to be able to loop through the API and generate a list of say, the menu items
+    # to do this we need to index through everything, specify what we want, and return all those values in a single list
+    # then export the data to food.db
+    for item in data:
+        return(item['Recipe_Name'])
+
+    # test comment
+
 
 
 @app.route("/login", methods=["GET", "POST"])
