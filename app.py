@@ -200,7 +200,13 @@ def home():
         return render_template("home.html")
     else:
         return redirect("/")
-@
+@app.route("/lunch")
+@login_required
+def lunch():
+    if request.method == "GET":
+        user_id = session["user_id"]
+        lunch_menu = db.execute("SELECT recipe_name FROM Meal
+                                WHERE location_name IN ('))
 
 
 
