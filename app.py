@@ -31,6 +31,11 @@ if response.ok:
 else:
     print("Error: ", response.status_code)
 
+if isinstance(data, dict):
+    print("Data is a dictionary.")
+else:
+    print("Data is not a dictionary.")
+
 
 @app.route("/")
 def index():
