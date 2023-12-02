@@ -18,7 +18,6 @@
     font-size: 20px;
     font-family: Lucida Console;
     background-color: #DC143C;
-    /* for example */
     color: white;
     /* text color */
     text-align: center;
@@ -26,7 +25,7 @@
     padding: 20px 32px;
     /* top/bottom, left/right padding */
     text-decoration: none;
-    /* to remove text underline */
+    /* remove text underline */
 }
 
 
@@ -47,9 +46,8 @@
 
 .selected {
     color: white;
-    /* changes the text color */
+    /* text color */
     background-color: blue;
-    /* changes the background color */
 }
 
 /* from http://thenewcode.com/500/Use-YouTube-Videos-as-Fullscreen-Web-Page-Backgrounds */
@@ -123,7 +121,8 @@
 
 }
 
-/* styles for login image */
+
+/* styles for annenberg image */
 .image-outside-login {
     max-width: 100%;
     height: auto;
