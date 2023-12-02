@@ -70,6 +70,7 @@ def login():
         return render_template("login.html")
 
 @app.route("/")
+@login_required
 def index():
     # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
