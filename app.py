@@ -129,19 +129,19 @@ def register():
         elif password != request.form.get("confirmation"):
             return apology("Passwords do not match", 400)
 
-        elif len(password) < 8:
-            return apology("Password must be at least 8 characters", 400)
+        #elif len(password) < 8:
+        #    return apology("Password must be at least 8 characters", 400)
 
-        digit = re.findall("\d", password)
-        if not digit:
-            return apology("Password must have at least one digit", 400)
+        #digit = re.findall("\d", password)
+        #if not digit:
+        #    return apology("Password must have at least one digit", 400)
 
-        spec_char = re.findall("[!@#$%]", password)
-        if not spec_char:
-            return apology(
-                "Password must contain at least one special character (!, @, #, $, %)",
-                400,
-            )
+        #spec_char = re.findall("[!@#$%]", password)
+        #if not spec_char:
+            #return apology(
+                #"Password must contain at least one special character (!, @, #, $, %)",
+                #400,
+            #)
 
         # Query database for username
         rows = db.execute(
