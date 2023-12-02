@@ -41,7 +41,7 @@ def index():
     # then export the data to food.db
     sourcream = data[0]['Recipe_Name']
     for item in data:
-        print()
+        print(data[item]['Recipe_Name'])
 
 
 
