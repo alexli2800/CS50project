@@ -1,3 +1,11 @@
+/* for login page */
+
+.wrapper {
+    width: 420px;
+    background: purple;
+    color: #fff;
+}
+
 .bigbutton {
     height: 100px;
     width: 200px;
@@ -108,3 +116,6 @@
     left: 0;
 
 }
+
+
+
