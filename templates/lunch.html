@@ -10,15 +10,24 @@
     </head>
     <h2>Food Item 1</h2>
     <div class="rating">
-        <input type="radio" id="star5" name="rating1" value="5" />
-        <!-- More radio buttons for the other stars -->
+        <form>
+            <input type="radio" id="1" name="rating" value="1">
+            <label for="1">1</label><br>
+            <input type="radio" id="2" name="rating" value="2">
+            <label for="2">2</label><br>
+            <input type="radio" id="3" name="rating" value="3">
+            <label for="3">3</label><br>
+            <input type="radio" id="4" name="rating" value="4">
+            <label for="4">4</label><br>
+            <input type="radio" id="5" name="rating" value="5">
+            <label for="5">5</label><br>
+          </form>
     </div>
     <textarea id="review1" name="review1"></textarea>
-
-    <script src="script.js"></script>
-
     // For each radio button...
     // Add an event listener that updates the rating when the button is clicked
 
     // For the submit button...
     // Add an event listener that gets the text from the textarea when the button is clicked
+
+    <script src="script.js"></script>
