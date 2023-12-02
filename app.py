@@ -203,7 +203,7 @@ def home():
     else:
         return redirect("/")
 
-@app.route("/lunch")
+@app.route("/lunch", methods=["GET", "POST"])
 @login_required
 def lunch():
     if request.method == "GET":
