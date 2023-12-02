@@ -17,7 +17,10 @@
 
         <link href="/static/styles.css" rel="stylesheet">
 
-        <title>HUDSHUB: {% block title %}{% endblock %}</title>
+        <head>
+            <title>HUDSHUB: {% block title %}{% endblock %}</title>
+            <link rel="icon" href="{{ url_for('static', filename='huds-icon.ico') }}">
+        </head>
 
     </head>
 
