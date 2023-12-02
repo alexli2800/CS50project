@@ -208,6 +208,10 @@ def home():
 def lunch():
     if request.method == "GET":
         user_id = session["user_id"]
+
+        # define formatted_date
+        formatted_date = datetime.now().strftime('%Y-%m-%d')
+
         lunch_menu = db.execute("""
                                     SELECT DISTINCT recipe_name FROM Meal
                                     WHERE (location_name LIKE '%Adams%'
