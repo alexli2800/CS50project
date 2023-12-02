@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    HUDSHUB: Welcome to HUDS Menu Review!
+    HUDSHUB
 {% endblock %}
 
 {% block main %}
@@ -9,20 +9,20 @@
 <!-- Header of page -->
     <h1 style="color: white; font-family: Oswald;" id="contact">HUDS HUB</h1>
 
+<!-- Display Date -->
+<p id="date" style="color: white; font-family: Oswald;"></p>
+<script>
+    document.getElementById('date').textContent = new Date().toLocaleDateString();
+</script>
+
+<h2 id="contant" style="color: white; font-family: Oswald;">SELECT A MEAL!</h2>
+
 <!-- Video background -->
 <div class="video-background">
     <div class="video-foreground">
     <iframe src="https://www.youtube.com/embed/b65MoVwANq4?&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&start=150" allowfullscreen></iframe>
     </div>
     </div>
-
-<!-- Display Date -->
-    <p id="date" style="color: white; font-family: Oswald;"></p>
-    <script>
-        document.getElementById('date').textContent = new Date().toLocaleDateString();
-    </script>
-
-    <h2 id="contant" style="color: white; font-family: Oswald;">SELECT A MEAL!</h2>
 
 <!-- Two Buttons for Lunch & Dinner Selection -->
     <div class="container">
