@@ -205,7 +205,7 @@ def home():
 def lunch():
     if request.method == "GET":
         user_id = session["user_id"]
-        lunch_menu = db.execute("SELECT recipe_name FROM Meal
+        lunch_menu = db.execute("SELECT DISTINCT recipe_name FROM Meal
                                 WHERE location_name LIKE '%Adams%'
                                 OR location_name LIKE '%Lowell%'
                                 OR location_name LIKE '%Quincy%'
