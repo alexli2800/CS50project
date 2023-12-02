@@ -228,7 +228,11 @@ def lunch():
 
 
 
-
+<ul>
+{% for row in results %}
+    <li>{{ row.column_name }}</li>
+{% endfor %}
+</ul>
 
 
 
