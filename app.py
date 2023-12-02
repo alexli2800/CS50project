@@ -194,6 +194,8 @@ def home():
     #for item in data:
     #    recipe_names.append(item['Recipe_Name'])
     #return recipe_names
+    for item in data:
+        
 
     return render_template("home.html")
 
