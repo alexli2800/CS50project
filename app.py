@@ -208,7 +208,7 @@ def home():
     # then export the data to food.db
 
     for item in data:
-       #db.execute("INSERT INTO Meal (date, meal_time, recipe_name, location_name) VALUES (?, ?, ?, ?)", (item['date'], item['Meal_Name'], item['Recipe_Name'], item['Location']))
+        #db.execute("INSERT INTO Meal (date, meal_time, recipe_name, location_name) VALUES (?, ?, ?, ?)", (item['date'], item['Meal_Name'], item['Recipe_Name'], item['Location']))
         print(item)
     return render_template("home.html")
 >>>>>>> 1730ff9ab7f7fa9a6e851e01c48d3f27c88d5bfe
