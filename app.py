@@ -9,7 +9,7 @@ import requests
 from functools import wraps
 from datetime import date
 
-current_date = date.today()
+formatted_date = date.today().strftime("%m/%d/%Y")
 
 
 def apology(message, code=400):
