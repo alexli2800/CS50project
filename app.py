@@ -1,12 +1,27 @@
 import os
 import re
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 import requests
 from functools import wraps
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/0.12/patterns/viewdecorators/
+    """
+
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 # Configure application
 app = Flask(__name__)
@@ -69,7 +84,72 @@ def login():
     else:
         return render_template("login.html")
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Register user"""
+    session.clear()
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        password = request.form.get("password")
+        # Ensure username was submitted
+        if not request.form.get("username"):
+            return apology("must provide username", 400)
+
+        # Ensure password was submitted
+        elif not password:
+            return apology("Must provide password", 400)
+
+        elif not request.form.get("confirmation"):
+            return apology("Must provide password", 400)
+
+        elif password != request.form.get("confirmation"):
+            return apology("Passwords do not match", 400)
+
+        elif len(password) < 8:
+            return apology("Password must be at least 8 characters", 400)
+
+        digit = re.findall("\d", password)
+        if not digit:
+            return apology("Password must have at least one digit", 400)
+
+        spec_char = re.findall("[!@#$%]", password)
+        if not spec_char:
+            return apology(
+                "Password must contain at least one special character (!, @, #, $, %)",
+                400,
+            )
+
+        # Query database for username
+        rows = db.execute(
+            "SELECT * FROM users WHERE username = ?", request.form.get("username")
+        )
+
+        # check if the username already exists
+        if len(rows) > 0:
+            return apology("Username is not available", 400)
+
+        # get the hash of the password
+        hash = generate_password_hash(request.form.get("password"))
+        db.execute(
+            "INSERT INTO users (username, hash) VALUES (:username, :hash)",
+            username=request.form.get("username"),
+            hash=hash,
+        )
+
+        # store their user id
+        session["user_id"] = db.execute(
+            "SELECT id FROM users WHERE username = :username",
+            username=request.form.get("username"),
+        )[0]["id"]
+        # Redirect user to home page
+        return redirect("/")
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("register.html")
+
 @app.route("/")
+@login_required
 def index():
     # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
