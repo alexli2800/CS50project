@@ -1,11 +1,27 @@
+// To enable popups
+
+document.getElementById('openPopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'block';
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+});
+
+
+
+// to grab reviews from user
+
 document.querySelector('#rating1').addEventListener('click', function() {
     // update rating
 });
 
 document.querySelector('#submit').addEventListener('click', function() {
-    // get text from textarea
+    // get text from text area
     var review = document.querySelector('#review').value;
 });
+
+
 
 // For each radio button...
 document.querySelectorAll('.rating-button').forEach(function(button) {
