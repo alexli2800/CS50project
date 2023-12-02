@@ -225,7 +225,8 @@ def lunch():
                                     OR location_name LIKE '%Annenberg%'
                                     AND meal_time LIKE '%Lunch%'
                                     AND meal_category LIKE '%Entree%'
-                                """)
+                                    AND date = '?'
+                                """, formatted_date)
         return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
         return redirect("/")
