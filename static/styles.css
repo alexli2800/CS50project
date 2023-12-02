@@ -1,4 +1,14 @@
 
+/* Change placeholder text color for #username input */
+#username::placeholder {
+    color: #801626;
+}
+
+/* Change placeholder text color for #password input */
+#password::placeholder {
+    color: #801626;
+}
+
 
 .bigbutton {
     height: 100px;
