@@ -221,7 +221,7 @@ def lunch():
                                     OR location_name LIKE '%Currier%'
                                     OR location_name LIKE '%Annenberg%'
                                     AND meal_time LIKE '%Lunch%'
-                                    OR meal_category LIKE '%Entree%'
+                                    AND meal_category LIKE '%Entree%'
                                 """)
         return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
