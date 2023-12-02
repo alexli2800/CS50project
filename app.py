@@ -175,6 +175,7 @@ def register():
 @app.route("/")
 @login_required
 def home():
+    user_id = session["user_id"]
     # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
     # first we need to be able to loop through the API and generate a list of say, the menu items
