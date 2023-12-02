@@ -7,7 +7,7 @@ document.querySelector('#submit').addEventListener('click', function() {
     var review = document.querySelector('#review').value;
 });
 
-// For each radio button...rfw2
+// For each radio button...rfw28
 document.querySelectorAll('.rating-button').forEach(function(button) {
     // Add an event listener that runs a function when the button is clicked
     button.addEventListener('click', function() {var clickedValue = parseInt(button.value);
