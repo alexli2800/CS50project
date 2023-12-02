@@ -222,7 +222,7 @@ def lunch():
                                     AND meal_time LIKE '%Lunch%'
                                     OR meal_category LIKE '%Entree%'
                                 """)
-        return render_template("lunch.html")
+        return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
         return redirect("/")
 
