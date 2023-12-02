@@ -41,3 +41,21 @@ document.querySelectorAll('.rating-button').forEach(function(button) {
         });
     });
 });
+
+// For each radio button...
+// Add an event listener that updates the rating when the button is clicked
+document.querySelectorAll('.rating input').forEach(function(button) {
+button.addEventListener('click', function() {
+    var ratingValue = button.value;
+    // Update rating logic goes here
+    console.log('Rating Clicked:', ratingValue);
+});
+});
+
+// For the submit button... Add an event listener that gets the text from the textarea when the button is clicked
+document.querySelector('#submit1').addEventListener('click', function() {
+// Get text from textarea
+var review = document.querySelector('#review1').value;
+// Submit review logic goes here
+console.log('Review Submitted:', review);
+});
