@@ -95,7 +95,9 @@ lunch_menu = db.execute("""
                             AND meal_category LIKE '%Entree%'
                             AND date = ?
                         """, formatted_date)
-print(lunch_menu)
+result = lunch_menu.fetchall()
+
+print(result)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
