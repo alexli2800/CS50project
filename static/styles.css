@@ -3,3 +3,8 @@ button {
     width: 200px;
     font-size: 20px;
 }
+
+.selected {
+    color: white; /* This changes the text color */
+    background-color: blue; /* This changes the background color */
+}
