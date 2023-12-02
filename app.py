@@ -231,6 +231,10 @@ def lunch():
                             AND meal_category LIKE '%Entree%'
                             AND date = ?
                         """, (formatted_date))
+        print(lunch_menu)
+        # lunch_menu = [
+        #     {"recipe_name": "beans"}
+        # ]
 
         return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
