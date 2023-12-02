@@ -195,10 +195,8 @@ def home():
         # first we need to be able to loop through the API and generate a list of say, the menu items
         # to do this we need to index through everything, specify what we want, and return all those values in a single list
         # then export the data to food.db
-        #recipe_names = []
-        #for item in data:
-        #    recipe_names.append(item['Recipe_Name'])
-        #return recipe_names
+        for item in data:
+            db.execute("INSERT ())
 
         return render_template("home.html")
     else:
