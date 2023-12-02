@@ -7,6 +7,11 @@
     background-color: black; /* Set background color */
 }
 
+/* Add space between "Forgot password?" and the button */
+.forgot-password {
+    margin-top: 100px; /* Adjust the margin as needed */
+        }
+
 .bigbutton {
     height: 100px;
     width: 200px;
