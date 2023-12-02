@@ -9,7 +9,7 @@
     background-color: #DC143C; /* for example */
     color: white; /* text color */
     text-align: center; /* to center the text */
-    padding: 15px 32px; /* top/bottom, left/right padding */
+    padding: 32px 32px; /* top/bottom, left/right padding */
     text-decoration: none; /* to remove text underline */
 }
 
