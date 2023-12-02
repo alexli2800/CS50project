@@ -1,16 +1,17 @@
 .bigbutton {
-<<<<<<< HEAD
-=======
-    display: inline-block;
->>>>>>> f65edbad1f8e4c6f3660a5bfbc14eed1415053b5
     height: 100px;
     width: 200px;
     font-size: 20px;
-    background-color: #DC143C; /* for example */
-    color: white; /* text color */
-    text-align: center; /* to center the text */
-    padding: 32px 32px; /* top/bottom, left/right padding */
-    text-decoration: none; /* to remove text underline */
+    background-color: #DC143C;
+    /* for example */
+    color: white;
+    /* text color */
+    text-align: center;
+    /* to center the text */
+    padding: 32px 32px;
+    /* top/bottom, left/right padding */
+    text-decoration: none;
+    /* to remove text underline */
 }
 
 #date {
@@ -18,8 +19,43 @@
 }
 
 .selected {
-    color: white; /* changes the text color */
-    background-color: blue; /* changes the background color */
+    color: white;
+    /* changes the text color */
+    background-color: blue;
+    /* changes the background color */
+}
+
+/* This css is from http://thenewcode.com/500/Use-YouTube-Videos-as-Fullscreen-Web-Page-Backgrounds */
+
+.video-background {
+    background: #000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -99;
+}
+
+.video-foreground,
+.video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#vidtop-content {
+    top: 0;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .video-foreground {
+        height: 300%;
+        top: -100%;
+    }
 }
 
 .popup {
@@ -50,4 +86,3 @@
     font-size: 20px;
     cursor: pointer;
 }
-
