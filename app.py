@@ -205,8 +205,8 @@ def home():
 def lunch():
     if request.method == "GET":
         user_id = session["user_id"]
-        lunch_menu = db.execute(
-                                    "SELECT DISTINCT recipe_name FROM Meal WHERE location_name LIKE '%Adams%'
+        lunch_menu = db.execute("""
+                                    SELECT DISTINCT recipe_name FROM Meal WHERE location_name LIKE '%Adams%'
                                     OR location_name LIKE '%Lowell%'
                                     OR location_name LIKE '%Quincy%'
                                     OR location_name LIKE '%Leverett%'
@@ -221,7 +221,7 @@ def lunch():
                                     OR location_name LIKE '%Annenberg%'
                                     AND meal_time LIKE '%Lunch%'
                                     OR meal_category LIKE '%Entree%'
-                                ")
+                                """)
         return render_template("lunch.html")
     else:
         return redirect("/")
