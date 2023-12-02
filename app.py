@@ -8,6 +8,8 @@ from datetime import datetime
 import requests
 from functools import wraps
 
+
+
 def apology(message, code=400):
     """Render message as an apology to user."""
 
