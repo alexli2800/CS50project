@@ -233,7 +233,7 @@ def lunch():
                             AND date = ?
                         """, formatted_date)
 
-        return render_template("lunch.html", lunch_menu=lunch_menu)
+        return render_template("lunch.html")
     else:
         return redirect("/")
 
