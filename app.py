@@ -193,8 +193,8 @@ def home():
     # to do this we need to index through everything, specify what we want, and return all those values in a single list
     # then export the data to food.db
 
-    #for item in data:
-       # db.execute("INSERT INTO Meal (date, meal_time, recipe_name, location_name) VALUES (?, ?, ?, ?)", (item['date'], item['Meal_Name'], item['Recipe_Name'], item['Location']))
+    for item in data:
+       db.execute("INSERT INTO Meal (date, meal_time, recipe_name, location_name) VALUES (?, ?, ?, ?)", (item['date'], item['Meal_Name'], item['Recipe_Name'], item['Location']))
 
     return render_template("home.html")
 
