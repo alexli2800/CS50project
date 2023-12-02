@@ -197,6 +197,7 @@ def home():
         #return recipe_names
 
         return render_template("home.html")
-    return render_template("home.html")
+    else:
+        return redirect("/")
 
 
