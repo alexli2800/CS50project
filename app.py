@@ -7,7 +7,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 import requests
 from functools import wraps
+from datetime import date
 
+formatted_date = date.today().strftime("%m/%d/%Y")
 
 
 def apology(message, code=400):
@@ -194,11 +196,41 @@ def home():
         # to do this we need to index through everything, specify what we want, and return all those values in a single list
         # then export the data to food.db
 
-        # for item in data:
-        # db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name) VALUES (?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Name'])
+        #for item in data:
+        #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
 
         return render_template("home.html")
     else:
         return redirect("/")
+
+@app.route("/lunch")
+@login_required
+def lunch():
+    if request.method == "GET":
+        user_id = session["user_id"]
+        lunch_menu = db.execute("""
+                                    SELECT DISTINCT recipe_name FROM Meal
+                                    WHERE location_name LIKE '%Adams%'
+                                    OR location_name LIKE '%Lowell%'
+                                    OR location_name LIKE '%Quincy%'
+                                    OR location_name LIKE '%Leverett%'
+                                    OR location_name LIKE '%Mather%'
+                                    OR location_name LIKE '%Dunster%'
+                                    OR location_name LIKE '%Eliot%'
+                                    OR location_name LIKE '%Kirkland%'
+                                    OR location_name LIKE '%Winthrop%'
+                                    OR location_name LIKE '%Cabot%'
+                                    OR location_name LIKE '%Pforzheimer%'
+                                    OR location_name LIKE '%Currier%'
+                                    OR location_name LIKE '%Annenberg%'
+                                    AND meal_time LIKE '%Lunch%'
+                                    AND meal_category LIKE '%Entree%'
+                                """)
+        return render_template("lunch.html", lunch_menu=lunch_menu)
+    else:
+        return redirect("/")
+
+
+
 
 
