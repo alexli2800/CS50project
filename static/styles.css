@@ -18,14 +18,10 @@
     font-size: 20px;
     font-family: Lucida Console;
     background-color: #DC143C;
-    color: white;
-    /* text color */
-    text-align: center;
-    /* to center the text */
-    padding: 20px 32px;
-    /* top/bottom, left/right padding */
-    text-decoration: none;
-    /* remove text underline */
+    color: white; /* text color */
+    text-align: center; /* to center the text */
+    padding: 20px 32px; /* top/bottom, left/right padding */
+    text-decoration: none; /* remove text underline */
 }
 
 
@@ -45,8 +41,7 @@
 }
 
 .selected {
-    color: white;
-    /* text color */
+    color: white; /* text color */
     background-color: blue;
 }
 
