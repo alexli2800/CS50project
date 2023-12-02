@@ -123,11 +123,10 @@
 
 }
 
-/* Add styles for the image outside the login square */
+/* styles for login image */
 .image-outside-login {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px; /* Adjust the margin as needed */
-    display: block; /* Ensure the image is treated as a block-level element */
     margin-top: 20px; /* Add margin above the image */
 }
