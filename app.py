@@ -31,11 +31,6 @@ if response.ok:
 else:
     print("Error: ", response.status_code)
 
-if isinstance(data, dict):
-    print("Data is a dictionary.")
-else:
-    print("Data is not a dictionary.")
-
 
 @app.route("/")
 def index():
@@ -45,7 +40,9 @@ def index():
     # to do this we need to index through everything, specify what we want, and return all those values in a single list
     # then export the data to food.db
     sourcream = data[0]['Recipe_Name']
-    return sourcream
+    for item in data:
+        print()
+
 
 
 
