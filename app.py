@@ -200,6 +200,7 @@ def home():
         return render_template("home.html")
     else:
         return redirect("/")
+
 @app.route("/lunch")
 @login_required
 def lunch():
