@@ -71,6 +71,8 @@ if response.ok:
     data = response.json()
 else:
     print("Error: ", response.status_code)
+for item in data:
+    print(item)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
