@@ -196,7 +196,7 @@ def home():
         # to do this we need to index through everything, specify what we want, and return all those values in a single list
         # then export the data to food.db
         for item in data:
-            db.execute("INSERT ())
+            db.execute("INSERT (
 
         return render_template("home.html")
     else:
