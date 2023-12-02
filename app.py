@@ -74,30 +74,6 @@ if response.ok:
 else:
     print("Error: ", response.status_code)
 
-formatted_date = datetime.now().strftime('%Y-%m-%d')
-
-lunch_menu = db.execute("""
-                            SELECT DISTINCT recipe_name FROM Meal
-                            WHERE (location_name LIKE '%Adams%'
-                            OR location_name LIKE '%Lowell%'
-                            OR location_name LIKE '%Quincy%'
-                            OR location_name LIKE '%Leverett%'
-                            OR location_name LIKE '%Mather%'
-                            OR location_name LIKE '%Dunster%'
-                            OR location_name LIKE '%Eliot%'
-                            OR location_name LIKE '%Kirkland%'
-                            OR location_name LIKE '%Winthrop%'
-                            OR location_name LIKE '%Cabot%'
-                            OR location_name LIKE '%Pforzheimer%'
-                            OR location_name LIKE '%Currier%'
-                            OR location_name LIKE '%Annenberg%')
-                            AND meal_time LIKE '%Lunch%'
-                            AND meal_category LIKE '%Entree%'
-                            AND date = ?
-                        """, formatted_date)
-for row in lunch_menu:
-    print(row)
-
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -236,6 +212,27 @@ def lunch():
         user_id = session["user_id"]
 
         # define formatted_date
+        formatted_date = datetime.now().strftime('%Y-%m-%d')
+
+        lunch_menu = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch%'
+                            AND meal_category LIKE '%Entree%'
+                            AND date = ?
+                        """, formatted_date)
 
         return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
