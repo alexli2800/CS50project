@@ -8,6 +8,8 @@ from datetime import datetime
 import requests
 from functools import wraps
 
+
+
 def apology(message, code=400):
     """Render message as an apology to user."""
 
@@ -188,6 +190,7 @@ def home():
         user_id = session["user_id"]
         # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
+<<<<<<< HEAD
         # first we need to be able to loop through the API and generate a list of say, the menu items
         # to do this we need to index through everything, specify what we want, and return all those values in a single list
         # then export the data to food.db
@@ -199,5 +202,15 @@ def home():
         return render_template("home.html")
     else:
         return redirect("/")
+=======
+    # first we need to be able to loop through the API and generate a list of say, the menu items
+    # to do this we need to index through everything, specify what we want, and return all those values in a single list
+    # then export the data to food.db
+
+    for item in data:
+       #db.execute("INSERT INTO Meal (date, meal_time, recipe_name, location_name) VALUES (?, ?, ?, ?)", (item['date'], item['Meal_Name'], item['Recipe_Name'], item['Location']))
+        print(item)
+    return render_template("home.html")
+>>>>>>> 1730ff9ab7f7fa9a6e851e01c48d3f27c88d5bfe
 
 
