@@ -218,7 +218,7 @@ def lunch():
                                 OR location_name LIKE '%Cabot%'
                                 OR location_name LIKE '%Pforzheimer%'
                                 OR location_name LIKE '%Currier%'
-                                OR location_name LIKE '%Annenberg%')
+                                OR location_name LIKE '%Annenberg%'")
 
 
 
