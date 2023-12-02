@@ -196,7 +196,7 @@ def home():
 
         #for item in data:
             #db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name) VALUES (?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Name'])
-
+        
         return render_template("home.html")
     else:
         return redirect("/")
