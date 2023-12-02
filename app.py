@@ -205,20 +205,28 @@ def home():
 def lunch():
     if request.method == "GET":
         user_id = session["user_id"]
-        lunch_menu = db.execute("SELECT DISTINCT recipe_name FROM Meal
-                                WHERE location_name LIKE '%Adams%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Quincy%'
-                                OR location_name LIKE '%Leverett%'
-                                OR location_name LIKE '%Mather%'
-                                OR location_name LIKE '%Dunster%'
-                                OR location_name LIKE '%Eliot%'
-                                OR location_name LIKE '%Kirkland%'
-                                OR location_name LIKE '%Winthrop%'
-                                OR location_name LIKE '%Cabot%'
-                                OR location_name LIKE '%Pforzheimer%'
-                                OR location_name LIKE '%Currier%'
-                                OR location_name LIKE '%Annenberg%'")
+        lunch_menu = db.execute(
+                                    "SELECT DISTINCT recipe_name FROM Meal WHERE location_name LIKE '%Adams%'
+                                    OR location_name LIKE '%Lowell%'
+                                    OR location_name LIKE '%Quincy%'
+                                    OR location_name LIKE '%Leverett%'
+                                    OR location_name LIKE '%Mather%'
+                                    OR location_name LIKE '%Dunster%'
+                                    OR location_name LIKE '%Eliot%'
+                                    OR location_name LIKE '%Kirkland%'
+                                    OR location_name LIKE '%Winthrop%'
+                                    OR location_name LIKE '%Cabot%'
+                                    OR location_name LIKE '%Pforzheimer%'
+                                    OR location_name LIKE '%Currier%'
+                                    OR location_name LIKE '%Annenberg%'
+                                    AND meal_time LIKE '%Lunch%'
+                                    OR meal_category LIKE '%Entree%'
+                                ")
+        return render_template("lunch.html")
+    else:
+        return redirect("/")
+
+
 
 
 
