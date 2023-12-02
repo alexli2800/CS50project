@@ -15,6 +15,7 @@
     /* to remove text underline */
 }
 
+
 .container{
     height:500px;
     width: 645px;
@@ -97,4 +98,8 @@
     right: 15px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.black-background {
+    background-color: black;
 }
