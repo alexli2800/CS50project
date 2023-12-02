@@ -213,7 +213,6 @@ def lunch():
 
         # define formatted_date
         formatted_date = datetime.now().strftime('%Y-%m-%d')
-
         lunch_menu = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
