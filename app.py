@@ -72,9 +72,6 @@ if response.ok:
 else:
     print("Error: ", response.status_code)
 
-for item in data:
-    print(item)
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
