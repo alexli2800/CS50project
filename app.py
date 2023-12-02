@@ -211,14 +211,14 @@ def lunch():
                                 OR location_name LIKE '%Quincy%'
                                 OR location_name LIKE '%Leverett%'
                                 OR location_name LIKE '%Mather%'
-                                OR location_name LIKE '%%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%'
-                                OR location_name LIKE '%Lowell%')
+                                OR location_name LIKE '%Dunster%'
+                                OR location_name LIKE '%Eliot%'
+                                OR location_name LIKE '%Kirkland%'
+                                OR location_name LIKE '%Winthrop%'
+                                OR location_name LIKE '%Cabot%'
+                                OR location_name LIKE '%Pforzheimer%'
+                                OR location_name LIKE '%Currier%'
+                                OR location_name LIKE '%Annenberg%')
 
 
 
