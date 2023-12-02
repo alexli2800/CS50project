@@ -10,6 +10,10 @@
     text-decoration: none; /* to remove text underline */
 }
 
+#date {
+    font-size: 30px;
+}
+
 .selected {
     color: white; /* changes the text color */
     background-color: blue; /* changes the background color */
