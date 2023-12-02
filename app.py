@@ -210,7 +210,7 @@ def lunch():
         user_id = session["user_id"]
         lunch_menu = db.execute("""
                                     SELECT DISTINCT recipe_name FROM Meal
-                                    WHERE location_name LIKE '%Adams%'
+                                    WHERE (location_name LIKE '%Adams%'
                                     OR location_name LIKE '%Lowell%'
                                     OR location_name LIKE '%Quincy%'
                                     OR location_name LIKE '%Leverett%'
@@ -222,10 +222,10 @@ def lunch():
                                     OR location_name LIKE '%Cabot%'
                                     OR location_name LIKE '%Pforzheimer%'
                                     OR location_name LIKE '%Currier%'
-                                    OR location_name LIKE '%Annenberg%'
+                                    OR location_name LIKE '%Annenberg%')
                                     AND meal_time LIKE '%Lunch%'
                                     AND meal_category LIKE '%Entree%'
-                                    AND date = '?'
+                                    AND date = ?
                                 """, formatted_date)
         return render_template("lunch.html", lunch_menu=lunch_menu)
     else:
