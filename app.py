@@ -317,7 +317,7 @@ def lunch():
 
 @app.route("/dinner", methods=["GET", "POST"])
 @login_required
-def lunch():
+def dinner():
     if request.method == "GET":
         user_id = session["user_id"]
 
