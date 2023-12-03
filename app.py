@@ -212,7 +212,7 @@ def lunch():
 
         # define formatted_date
         formatted_date = datetime.now().strftime('%m/%d/%Y')
-        lunch_menu = db.execute("""
+        lunch_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -231,12 +231,28 @@ def lunch():
                             AND meal_category LIKE '%Entrees%'
                             AND date = ?
                         """, (formatted_date))
-        print(lunch_menu)
-        # lunch_menu = [
-        #     {"recipe_name": "beans"}
-        # ]
 
-        return render_template("lunch.html", lunch_menu=lunch_menu)
+        lunch_vegetables = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Vegetables%'
+                            AND date = ?
+                        """, (formatted_date))
+
+        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables)
     else:
         return redirect("/")
 

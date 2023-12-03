@@ -7,14 +7,13 @@
 {% block main %}
 
 <div class="wrapper">
-    <ul>
-        {% for row in lunch_menu %}
-            <li>{{ row.recipe_name }}</li>
-        {% endfor %}
-        </ul>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Entrees</h2>
-        <h3>Food Item 1</h3>
+        <ul>
+            {% for row in lunch_entree %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
         <button id="Food Item">Open Popup</button>
 
         <div id="popup" class="popup">
@@ -25,6 +24,11 @@
         </div>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Vegetables</h2>
+        <ul>
+            {% for row in lunch_vegetables %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Starch and Potatoes</h2>
 
