@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+
 {% block title %}
     Dinner
 {% endblock %}
@@ -49,30 +51,30 @@
             {% endfor %}
         </ul>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" id="closePopup">&times;</span>
-            <p>This is a popup content.</p>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closePopup">&times;</span>
+                <p>This is a popup content.</p>
+            </div>
         </div>
-    </div>
-    <div class="rating">
-        <form>
-            <input type="radio" id="0" name="rating" value="0">
-            <label for="0">0</label><br>
-            <input type="radio" id="1" name="rating" value="1">
-            <label for="1">1</label><br>
-            <input type="radio" id="2" name="rating" value="2">
-            <label for="2">2</label><br>
-            <input type="radio" id="3" name="rating" value="3">
-            <label for="3">3</label><br>
-            <input type="radio" id="4" name="rating" value="4">
-            <label for="4">4</label><br>
-            <input type="radio" id="5" name="rating" value="5">
-            <label for="5">5</label><br>
-        </form>
-    </div>
+        <div class="rating">
+            <form>
+                <input type="radio" id="0" name="rating" value="0">
+                <label for="0">0</label><br>
+                <input type="radio" id="1" name="rating" value="1">
+                <label for="1">1</label><br>
+                <input type="radio" id="2" name="rating" value="2">
+                <label for="2">2</label><br>
+                <input type="radio" id="3" name="rating" value="3">
+                <label for="3">3</label><br>
+                <input type="radio" id="4" name="rating" value="4">
+                <label for="4">4</label><br>
+                <input type="radio" id="5" name="rating" value="5">
+                <label for="5">5</label><br>
+            </form>
+        </div>
 
-    <textarea id="review1" name="review1"></textarea>
+        <textarea id="review1" name="review1"></textarea>
 
     </div>
 {% endblock %}
