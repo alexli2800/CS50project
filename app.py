@@ -9,7 +9,6 @@ import requests
 from functools import wraps
 from datetime import date
 
-formatted_date = date.today().strftime("%m/%d/%Y")
 
 
 def apology(message, code=400):
@@ -73,6 +72,8 @@ if response.ok:
     data = response.json()
 else:
     print("Error: ", response.status_code)
+
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -210,29 +211,117 @@ def lunch():
         user_id = session["user_id"]
 
         # define formatted_date
-        formatted_date = datetime.now().strftime('%Y-%m-%d')
-        lunch_menu = db.execute("""
-                                    SELECT DISTINCT recipe_name FROM Meal
-                                    WHERE (location_name LIKE '%Adams%'
-                                    OR location_name LIKE '%Lowell%'
-                                    OR location_name LIKE '%Quincy%'
-                                    OR location_name LIKE '%Leverett%'
-                                    OR location_name LIKE '%Mather%'
-                                    OR location_name LIKE '%Dunster%'
-                                    OR location_name LIKE '%Eliot%'
-                                    OR location_name LIKE '%Kirkland%'
-                                    OR location_name LIKE '%Winthrop%'
-                                    OR location_name LIKE '%Cabot%'
-                                    OR location_name LIKE '%Pforzheimer%'
-                                    OR location_name LIKE '%Currier%'
-                                    OR location_name LIKE '%Annenberg%')
-                                    AND meal_time LIKE '%Lunch%'
-                                    AND meal_category LIKE '%Entree%'
-                                    AND date = ?
-                                """, formatted_date)
-        return render_template("lunch.html", lunch_menu=lunch_menu)
+        formatted_date = datetime.now().strftime('%m/%d/%Y')
+        lunch_entree = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Entrees%'
+                            AND date = ?
+                        """, (formatted_date))
+
+        lunch_vegetables = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Vegetables%'
+                            AND date = ?
+                        """, (formatted_date))
+        lunch_starch = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Starch And Potatoes%'
+                            AND date = ?
+                        """, (formatted_date))
+        lunch_vegan = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Veg,Vegan%'
+                            AND date = ?
+                        """, (formatted_date))
+
+        lunch_dessert = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Desserts%'
+                            AND date = ?
+                        """, (formatted_date))
+
+
+        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_dessert=lunch_dessert)
     else:
         return redirect("/")
+
+@app.route("/rating", methods=["GET", "POST"])
+def rating():
+    if request.method=="GET":
+        return render_template("rating.html")
+    else:
+        return redirect("/")
+
 
 
 
