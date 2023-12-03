@@ -315,6 +315,14 @@ def lunch():
     else:
         return redirect("/")
 
+@app.route("/rating", methods=["GET", "POST"])
+def rating():
+    if request.method=="GET":
+        return render_template("rating.html")
+    else:
+        return redirect("/")
+
+
 
 
 
