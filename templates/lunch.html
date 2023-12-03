@@ -31,10 +31,25 @@
         </ul>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Starch and Potatoes</h2>
+        <ul>
+            {% for row in lunch_starch %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Veg/Vegan</h2>
+        <ul>
+            {% for row in lunch_vegan %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Dessert</h2>
+        <ul>
+            {% for row in lunch_dessert %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
 
         <div class="rating">
             <form>
