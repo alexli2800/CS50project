@@ -439,6 +439,8 @@ def rating():
         if not review:
             return apology("Missing Review", 400)
 
+        db.execute("INSERT INTO Ratings ())
+
         return render_template("rating.html")
     else:
         return redirect("/")
