@@ -424,27 +424,21 @@ def dinner():
     else:
         return redirect("/")
 
-@app.route("/rating", methods=["GET", "POST"])
 def rating():
-    if request.method=="GET":
-        # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
-        user_id = session["user_id"]
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
-        # get user input
-        rating = request.form.get("rating")
-        review = request.form.get("review")
+    # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
+    user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    # get user input
+    rating = request.form.get("rating")
+    review = request.form.get("review")
 
-        # check if there is any input for rating and review
-        if not rating:
-            return apology("Missing Rating", 400)
-        if not review:
-            return apology("Missing Review", 400)
+    # check if there is any input for rating and review
+    if not rating:
+        return apology("Missing Rating", 400)
+    if not review:
+        return apology("Missing Review", 400)
 
-        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
-
-        return render_template("rating.html")
-    else:
-        return redirect("/")
+    db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
 
 
 
