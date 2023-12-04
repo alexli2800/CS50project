@@ -170,8 +170,13 @@
       height: 50px;
       width: 100px;
   }
-  
+
 /* change btn-primary properties */
   .btn-primary {
     background-color: #750c34;
+    outline: none;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    box-shadow: 0 0 0 0.2rem #fffff;
 }
