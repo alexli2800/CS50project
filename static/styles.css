@@ -15,9 +15,9 @@
 .bigbutton {
     height: 100px;
     width: 200px;
-    font-size: 20px;
+    font-size: 25px;
     font-family: Lucida;
-    background-color: #750c34;
+    background-color: #DC143C;
     color: white; /* text color */
     text-align: center; /* to center the text */
     padding: 32px 32px; /* top/bottom, left/right padding */
@@ -165,7 +165,7 @@
 
   /* change submit button properties */
   .custom-button {
-      background-color: #750c34;
+      background-color: #DC143C;
       color: #fff;
       height: 50px;
       width: 100px;
@@ -173,7 +173,7 @@
 
 /* change btn-primary properties */
 body .btn-primary {
-    background-color: #750c34;
+    background-color: #DC143C;
     outline: none;
     border: 1px solid transparent; /* Resetting the border property */
   }
@@ -181,6 +181,6 @@ body .btn-primary {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
-    background-color: #750c34;
+    background-color: #DC143C;
     border: 1px solid white;
 }
