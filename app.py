@@ -290,28 +290,9 @@ def lunch():
                             AND date = ?
                         """, (formatted_date))
 
-        lunch_dessert = db.execute("""
-                            SELECT DISTINCT recipe_name FROM Meal
-                            WHERE (location_name LIKE '%Adams%'
-                            OR location_name LIKE '%Lowell%'
-                            OR location_name LIKE '%Quincy%'
-                            OR location_name LIKE '%Leverett%'
-                            OR location_name LIKE '%Mather%'
-                            OR location_name LIKE '%Dunster%'
-                            OR location_name LIKE '%Eliot%'
-                            OR location_name LIKE '%Kirkland%'
-                            OR location_name LIKE '%Winthrop%'
-                            OR location_name LIKE '%Cabot%'
-                            OR location_name LIKE '%Pforzheimer%'
-                            OR location_name LIKE '%Currier%'
-                            OR location_name LIKE '%Annenberg%')
-                            AND meal_time LIKE '%Lunch Entrees%'
-                            AND meal_category LIKE '%Desserts%'
-                            AND date = ?
-                        """, (formatted_date))
 
 
-        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_dessert=lunch_dessert)
+        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan)
     else:
         return redirect("/")
 
@@ -401,35 +382,16 @@ def dinner():
                             AND date = ?
                         """, (formatted_date))
 
-        dinner_dessert = db.execute("""
-                            SELECT DISTINCT recipe_name FROM Meal
-                            WHERE (location_name LIKE '%Adams%'
-                            OR location_name LIKE '%Lowell%'
-                            OR location_name LIKE '%Quincy%'
-                            OR location_name LIKE '%Leverett%'
-                            OR location_name LIKE '%Mather%'
-                            OR location_name LIKE '%Dunster%'
-                            OR location_name LIKE '%Eliot%'
-                            OR location_name LIKE '%Kirkland%'
-                            OR location_name LIKE '%Winthrop%'
-                            OR location_name LIKE '%Cabot%'
-                            OR location_name LIKE '%Pforzheimer%'
-                            OR location_name LIKE '%Currier%'
-                            OR location_name LIKE '%Annenberg%')
-                            AND meal_time LIKE '%Dinner Entrees%'
-                            AND meal_category LIKE '%Desserts%'
-                            AND date = ?
-                        """, (formatted_date))
 
 
-        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_dessert=dinner_dessert)
+        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan)
     else:
         return redirect("/")
 
 @app.route("/rating", methods=["GET", "POST"])
 def rating():
     if request.method=="GET":
-        # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database 
+        # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
         return render_template("rating.html")
     else:
         return redirect("/")
