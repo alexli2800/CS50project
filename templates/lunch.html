@@ -49,26 +49,68 @@
             <form action="#" method="post" onsubmit="redirectToHome()">
 
                 <div class="rating">
-                    <div class="star" onclick="setRating(5)"></div>
-                    <div class="star" onclick="setRating(4)"></div>
-                    <div class="star" onclick="setRating(3)"></div>
-                    <div class="star" onclick="setRating(2)"></div>
-                    <div class="star" onclick="setRating(1)"></div>
-                  </div>
+                    <div class="star" onclick="setRating(5)" onmouseover="hoverRating(5)" onmouseout="clearHover()"></div>
+                    <div class="star" onclick="setRating(4)" onmouseover="hoverRating(4)" onmouseout="clearHover()"></div>
+                    <div class="star" onclick="setRating(3)" onmouseover="hoverRating(3)" onmouseout="clearHover()"></div>
+                    <div class="star" onclick="setRating(2)" onmouseover="hoverRating(2)" onmouseout="clearHover()"></div>
+                    <div class="star" onclick="setRating(1)" onmouseover="hoverRating(1)" onmouseout="clearHover()"></div>
+                </div>
 
-                  <p id="selectedRating">Selected Rating: 0</p>
+                <p id="selectedRating">Selected Rating: 0</p>
 
-            <script>
-        /* selecting star rating */
+                <script>
+                    let selectedRating = 0;
 
-        let selectedRating = 0;
+                    function setRating(rating) {
+                        selectedRating = rating;
+                        updateStars(); // Call function to update stars visually
+                        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
+                    }
 
-        function setRating(rating) {
-        selectedRating = rating;
-        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
-        }
-            </script>
+                    function hoverRating(rating) {
+                        document.getElementById('selectedRating').innerText = `Hovering over: ${rating} stars`;
+                        highlightStars(rating); // Call function to highlight stars visually
+                    }
 
+                    function clearHover() {
+                        if (selectedRating === 0) {
+                            document.getElementById('selectedRating').innerText = `Selected Rating: 0`;
+                            clearStars(); // Call function to clear stars visually
+                        }
+                    }
+
+                    function updateStars() {
+                        // Update stars based on the selected rating
+                        for (let i = 1; i <= 5; i++) {
+                            const star = document.querySelector(`.star:nth-child(${i})`);
+                            if (i <= selectedRating) {
+                                star.classList.add('selected');
+                            } else {
+                                star.classList.remove('selected');
+                            }
+                        }
+                    }
+
+                    function highlightStars(rating) {
+                        // Highlight stars based on the hovered rating
+                        for (let i = 1; i <= 5; i++) {
+                            const star = document.querySelector(`.star:nth-child(${i})`);
+                            if (i <= rating) {
+                                star.classList.add('hovered');
+                            } else {
+                                star.classList.remove('hovered');
+                            }
+                        }
+                    }
+
+                    function clearStars() {
+                        // Clear all star highlights
+                        const stars = document.querySelectorAll('.star');
+                        stars.forEach(star => star.classList.remove('hovered'));
+                    }
+                </script>
+
+            </form>
         </div>
 
         <textarea id="review1" name="review1"></textarea>
