@@ -177,3 +177,10 @@ body .btn-primary {
     outline: none;
     border: 1px solid transparent; /* Resetting the border property */
   }
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #750c34;
+    border: 1px solid white;
+}
