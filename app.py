@@ -428,7 +428,7 @@ def dinner():
 def rating():
     if request.method=="GET":
         # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
-
+        user_id = session["user_id"]
         # get user input
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -439,7 +439,7 @@ def rating():
         if not review:
             return apology("Missing Review", 400)
 
-        db.execute("INSERT INTO Ratings ())
+        db.execute("INSERT INTO Ratings (id, date, rating) VALUES (?, ?, ?)", )
 
         return render_template("rating.html")
     else:
