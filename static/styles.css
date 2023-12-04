@@ -124,3 +124,34 @@
     margin-bottom: 20px; /* Adjust the margin as needed */
     margin-top: 20px; /* Add margin above the image */
 }
+
+
+/* change the size of the review textboxes */
+#review1 {
+    height: 100px;
+    width: 350px;
+}
+
+
+/* star rating */
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 30px;
+  }
+
+  .star {
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .star::before {
+    content: '\2605'; /* Unicode character for a star */
+  }
+
+  .star:hover::before,
+  .star:hover ~ .star::before {
+    content: '\2605'; /* Change to filled star on hover */
+    color: gold;       /* Change the color to gold or any desired color */
