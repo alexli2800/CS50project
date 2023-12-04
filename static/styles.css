@@ -170,4 +170,8 @@
       height: 50px;
       width: 100px;
   }
-
+  
+/* change btn-primary properties */
+  .btn-primary {
+    background-color: #750c34;
+}
