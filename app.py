@@ -397,7 +397,7 @@ def rating():
         rating = request.form.get("rating")
         review = request.form.get("review")
 
-        # check if the
+        # check if there is any input for rating and review 
         if not rating:
             return apology("Missing Rating", 400)
         if not review:
