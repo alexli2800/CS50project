@@ -176,7 +176,3 @@
     background-color: #750c34;
     outline: none;
 }
-
-.btn-primary:focus, .btn-primary:active {
-    box-shadow: 0 0 0 0.2rem #fffff;
-}
