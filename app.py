@@ -185,13 +185,21 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+def average():
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ?", formatted_date)
+    if count[0]["COUNT(*)"] > 0:
+        average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
+        return average_rating
+    else:
+        
+
 
 @app.route("/")
 @login_required
 def home():
     if request.method == "GET":
         user_id = session["user_id"]
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
         # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
         # first we need to be able to loop through the API and generate a list of say, the menu items
@@ -200,7 +208,6 @@ def home():
 
         #for item in data:
         #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
-        average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
         return render_template("home.html", average_rating=average_rating)
     else:
         return redirect("/")
