@@ -289,10 +289,28 @@ def lunch():
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
                         """, (formatted_date))
+        lunch_halal = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Halal%'
+                            AND date = ?
+                        """, (formatted_date))
 
 
-
-        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan)
+        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
 
@@ -381,10 +399,28 @@ def dinner():
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
                         """, (formatted_date))
+        dinner_halal = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Dinner Entrees%'
+                            AND meal_category LIKE '%Halal%'
+                            AND date = ?
+                        """, (formatted_date))
 
 
-
-        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan)
+        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_halal=dinner_halal)
     else:
         return redirect("/")
 
@@ -397,7 +433,7 @@ def rating():
         rating = request.form.get("rating")
         review = request.form.get("review")
 
-        # check if there is any input for rating and review 
+        # check if there is any input for rating and review
         if not rating:
             return apology("Missing Rating", 400)
         if not review:
