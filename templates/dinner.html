@@ -46,14 +46,8 @@
             {% endfor %}
         </ul>
 
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close" id="closePopup">&times;</span>
-                <p>This is a popup content.</p>
-            </div>
-        </div>
         <div class="rating">
-            <form>
+            <form action="#" method="post" onsubmit="redirectToHome()">
 
                 <div class="rating">
                     <div class="star" onclick="setRating(5)"></div>
@@ -65,25 +59,11 @@
 
                   <p id="selectedRating">Selected Rating: 0</p>
 
-            <script>
-
-
-        /* selecting star rating */
-
-        let selectedRating = 0;
-
-        function setRating(rating) {
-        selectedRating = rating;
-        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
-        }
-
-            </script>
-
         </div>
 
         <textarea id="review1" name="review1"></textarea>
-        <div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button type="submit">Submit</button>
+        </form>
         </div>
 
     </div>
