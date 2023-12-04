@@ -167,9 +167,9 @@ def register():
 
         # store their user id
         session["user_id"] = db.execute(
-            "SELECT id FROM users WHERE username = :username",
+            "SELECT user_id FROM users WHERE username = :username",
             username=request.form.get("username"),
-        )[0]["id"]
+        )[0]["user_id"]
         # Redirect user to home page
         return redirect("/")
 
@@ -203,6 +203,22 @@ def home():
         return render_template("home.html")
     else:
         return redirect("/")
+
+def rating():
+    # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
+    user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    # get user input
+    rating = request.form.get("rating")
+    review = request.form.get("review")
+
+    # check if there is any input for rating and review
+    if not rating:
+        return apology("Missing Rating", 400)
+    if not review:
+        return apology("Missing Review", 400)
+
+    db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
 
 @app.route("/lunch", methods=["GET", "POST"])
 @login_required
@@ -289,10 +305,28 @@ def lunch():
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
                         """, (formatted_date))
+        lunch_halal = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Lunch Entrees%'
+                            AND meal_category LIKE '%Halal%'
+                            AND date = ?
+                        """, (formatted_date))
 
-
-
-        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan)
+        rating()
+        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
 
@@ -381,31 +415,32 @@ def dinner():
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
                         """, (formatted_date))
+        dinner_halal = db.execute("""
+                            SELECT DISTINCT recipe_name FROM Meal
+                            WHERE (location_name LIKE '%Adams%'
+                            OR location_name LIKE '%Lowell%'
+                            OR location_name LIKE '%Quincy%'
+                            OR location_name LIKE '%Leverett%'
+                            OR location_name LIKE '%Mather%'
+                            OR location_name LIKE '%Dunster%'
+                            OR location_name LIKE '%Eliot%'
+                            OR location_name LIKE '%Kirkland%'
+                            OR location_name LIKE '%Winthrop%'
+                            OR location_name LIKE '%Cabot%'
+                            OR location_name LIKE '%Pforzheimer%'
+                            OR location_name LIKE '%Currier%'
+                            OR location_name LIKE '%Annenberg%')
+                            AND meal_time LIKE '%Dinner Entrees%'
+                            AND meal_category LIKE '%Halal%'
+                            AND date = ?
+                        """, (formatted_date))
 
-
-
-        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan)
+        rating()
+        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_halal=dinner_halal)
     else:
         return redirect("/")
 
-@app.route("/rating", methods=["GET", "POST"])
-def rating():
-    if request.method=="GET":
-        # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
 
-        # get user input
-        rating = request.form.get("rating")
-        review = request.form.get("review")
-
-        # check if there is any input for rating and review 
-        if not rating:
-            return apology("Missing Rating", 400)
-        if not review:
-            return apology("Missing Review", 400)
-
-        return render_template("rating.html")
-    else:
-        return redirect("/")
 
 
 

@@ -38,6 +38,13 @@
             {% endfor %}
         </ul>
 
+        <h2 id="contant" style="color: white; font-family: Oswald;">Halal</h2>
+        <ul style="color: white; font-family: Oswald;">
+            {% for row in dinner_halal %}
+                <li>{{ row.recipe_name }}</li>
+            {% endfor %}
+        </ul>
+
         <div class="rating">
             <form action="#" method="post" onsubmit="redirectToHome()">
 
