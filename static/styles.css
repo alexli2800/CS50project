@@ -17,7 +17,7 @@
     width: 200px;
     font-size: 20px;
     font-family: Lucida;
-    background-color: #DC143C;
+    background-color: #750c34;
     color: white; /* text color */
     text-align: center; /* to center the text */
     padding: 20px 32px; /* top/bottom, left/right padding */
@@ -165,7 +165,9 @@
 
   /* change submit button properties */
   .custom-button {
-      background-color: #750c34; /* Set your desired background color */
-      color: #fff; /* Set your desired text color */
+      background-color: #750c34;
+      color: #fff;
+      height: 50px;
+      width: 100px;
   }
 
