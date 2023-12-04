@@ -429,6 +429,7 @@ def rating():
     if request.method=="GET":
         # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
         user_id = session["user_id"]
+        formatted_date = datetime.now().strftime('%m/%d/%Y')
         # get user input
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -439,7 +440,7 @@ def rating():
         if not review:
             return apology("Missing Review", 400)
 
-        db.execute("INSERT INTO Ratings (id, date, rating) VALUES (?, ?, ?)", )
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
 
         return render_template("rating.html")
     else:
