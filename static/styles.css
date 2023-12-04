@@ -124,3 +124,10 @@
     margin-bottom: 20px; /* Adjust the margin as needed */
     margin-top: 20px; /* Add margin above the image */
 }
+
+
+/* change the size of the review textboxes */
+#review1 {
+    height: 100px;
+    width: 350px;
+}
