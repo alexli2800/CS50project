@@ -155,12 +155,3 @@
   .star:hover ~ .star::before {
     content: '\2605'; /* Change to filled star on hover */
     color: gold;       /* Change the color to gold or any desired color */
-
-    /* selecting stars */
-    
-    let selectedRating = 0;
-
-    function setRating(rating) {
-      selectedRating = rating;
-      document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
-    }
