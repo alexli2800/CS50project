@@ -325,7 +325,7 @@ def lunch():
                             AND date = ?
                         """, (formatted_date))
 
-
+        rating()
         return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
