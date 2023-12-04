@@ -7,11 +7,8 @@
 {% block main %}
 
 <div class="wrapper">
-<<<<<<< HEAD
-=======
         <!-- Header of page -->
         <h1 style="color: white; font-family: Oswald;" id="contact">Dinner Menu</h1>
->>>>>>> 43a36d47f7dbc5635178f980dd5cc9eded83073d
 
         <h2 id="contant" style="color: white; font-family: Oswald;">Entrees</h2>
         <ul style="color: white; font-family: Oswald;">
@@ -56,39 +53,45 @@
             {% endfor %}
         </ul>
 
-<<<<<<< HEAD
         <div id="popup" class="popup">
             <div class="popup-content">
                 <span class="close" id="closePopup">&times;</span>
                 <p>This is a popup content.</p>
             </div>
         </div>
-=======
->>>>>>> 43a36d47f7dbc5635178f980dd5cc9eded83073d
         <div class="rating">
             <form>
-                <input type="radio" id="0" name="rating" value="0">
-                <label for="0">0</label><br>
-                <input type="radio" id="1" name="rating" value="1">
-                <label for="1">1</label><br>
-                <input type="radio" id="2" name="rating" value="2">
-                <label for="2">2</label><br>
-                <input type="radio" id="3" name="rating" value="3">
-                <label for="3">3</label><br>
-                <input type="radio" id="4" name="rating" value="4">
-                <label for="4">4</label><br>
-                <input type="radio" id="5" name="rating" value="5">
-                <label for="5">5</label><br>
-            </form>
+
+                <div class="rating">
+                    <div class="star" onclick="setRating(5)"></div>
+                    <div class="star" onclick="setRating(4)"></div>
+                    <div class="star" onclick="setRating(3)"></div>
+                    <div class="star" onclick="setRating(2)"></div>
+                    <div class="star" onclick="setRating(1)"></div>
+                  </div>
+
+                  <p id="selectedRating">Selected Rating: 0</p>
+
+            <script>
+
+
+        /* selecting star rating */
+
+        let selectedRating = 0;
+
+        function setRating(rating) {
+        selectedRating = rating;
+        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
+        }
+
+            </script>
+
         </div>
 
         <textarea id="review1" name="review1"></textarea>
-<<<<<<< HEAD
-=======
         <div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </div>
->>>>>>> 43a36d47f7dbc5635178f980dd5cc9eded83073d
 
     </div>
 {% endblock %}
