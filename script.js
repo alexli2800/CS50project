@@ -60,14 +60,6 @@ var review = document.querySelector('#review1').value;
 console.log('Review Submitted:', review);
 });
 
-        /* selecting star rating */
-
-        let selectedRating = 0;
-
-        function setRating(rating) {
-        selectedRating = rating;
-        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
-        }
 /* redirect user to home page after submit */
 
         function redirectToHome() {

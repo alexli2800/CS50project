@@ -59,10 +59,21 @@
 
                   <p id="selectedRating">Selected Rating: 0</p>
 
+            <script>
+        /* selecting star rating */
+
+        let selectedRating = 0;
+
+        function setRating(rating) {
+        selectedRating = rating;
+        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
+        }
+            </script>
+
         </div>
 
         <textarea id="review1" name="review1"></textarea>
-            <button type="submit">Submit</button>
+            <button type="submit" class="custom-button">Submit</button>
         </form>
         </div>
 

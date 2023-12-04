@@ -162,3 +162,10 @@
     list-style-type: none;
   }
 
+
+  /* change submit button properties */
+  .custom-button {
+      background-color: #750c34; /* Set your desired background color */
+      color: #fff; /* Set your desired text color */
+  }
+
