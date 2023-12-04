@@ -172,7 +172,8 @@
   }
 
 /* change btn-primary properties */
-  .btn-primary {
+body .btn-primary {
     background-color: #750c34;
     outline: none;
-}
+    border: 1px solid transparent; /* Resetting the border property */
+  }
