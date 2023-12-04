@@ -6,7 +6,7 @@
 
 {% block main %}
 
-<div class="wrapper">
+<div class="wrapper container text-center">
     <!-- Header of page -->
     <h1 style="color: white; font-family: Oswald;" id="contact">Lunch Menu</h1>
 
@@ -17,28 +17,28 @@
             {% endfor %}
         </ul>
 
-        <h2 id="contant" style="color: white; font-family: Oswald;">Vegetables</h2>
+        <h2 id="content" style="color: white; font-family: Oswald;">Vegetables</h2>
         <ul style="color: white; font-family: Oswald;">
             {% for row in lunch_vegetables %}
                 <li>{{ row.recipe_name }}</li>
             {% endfor %}
         </ul>
 
-        <h2 id="contant" style="color: white; font-family: Oswald;">Starch and Potatoes</h2>
+        <h2 id="content" style="color: white; font-family: Oswald;">Starch and Potatoes</h2>
         <ul style="color: white; font-family: Oswald;">
             {% for row in lunch_starch %}
                 <li>{{ row.recipe_name }}</li>
             {% endfor %}
         </ul>
 
-        <h2 id="contant" style="color: white; font-family: Oswald;">Veg/Vegan</h2>
+        <h2 id="content" style="color: white; font-family: Oswald;">Veg/Vegan</h2>
         <ul style="color: white; font-family: Oswald;">
             {% for row in lunch_vegan %}
                 <li>{{ row.recipe_name }}</li>
             {% endfor %}
         </ul>
 
-        <h2 id="contant" style="color: white; font-family: Oswald;">Halal</h2>
+        <h2 id="content" style="color: white; font-family: Oswald;">Halal</h2>
         <ul style="color: white; font-family: Oswald;">
             {% for row in lunch_halal %}
                 <li>{{ row.recipe_name }}</li>
