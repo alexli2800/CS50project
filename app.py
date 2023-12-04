@@ -435,7 +435,7 @@ def dinner():
                             AND date = ?
                         """, (formatted_date))
 
-
+        rating()
         return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_halal=dinner_halal)
     else:
         return redirect("/")
