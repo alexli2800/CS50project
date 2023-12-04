@@ -392,6 +392,7 @@ def dinner():
 def rating():
     if request.method=="GET":
         # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
+        
         return render_template("rating.html")
     else:
         return redirect("/")
