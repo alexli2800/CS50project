@@ -192,7 +192,7 @@ def average():
         average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
         return average_rating
     else:
-        
+
 
 
 @app.route("/")
@@ -294,8 +294,7 @@ def lunch():
                             OR location_name LIKE '%Annenberg%')
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Starch And Potatoes%'
-                            AND date = ?
-                        """, (formatted_date))
+                            AND date = ?                        """, (formatted_date))
         lunch_vegan = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
