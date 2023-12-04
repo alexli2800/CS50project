@@ -215,6 +215,7 @@ def rating():
     # check if there is any input for rating and review
     if not rating:
         return apology("Missing Rating", 400)
+    if not rating
     if not review:
         return apology("Missing Review", 400)
 
