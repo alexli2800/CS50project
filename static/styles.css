@@ -166,7 +166,14 @@ body {
     text-shadow: 0 0 5px #09f; /* You can adjust this as needed */
   }
 
-
+  
+  /* textarea formatting */
+  textarea {
+    font-size: 16px; /* Adjust the size as needed */
+    height: 100px;
+    width: 300px;
+    margin-top: 20px;
+}
 
   /* remove bullet points on menu items */
   ul {
