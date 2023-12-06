@@ -150,8 +150,7 @@ body {
   .rating label .icon {
     float: left;
     color: transparent;
-    outline: 1px solid white; /* Add an outline to the stars */
-  }
+}
 
   .rating label:last-child .icon {
     color: #000;
@@ -182,7 +181,7 @@ body {
   }
 
 
-  /* change submit button properties */
+/* change submit button properties */
   .custom-button {
       background-color: #DC143C;
       color: #fff;
