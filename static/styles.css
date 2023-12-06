@@ -150,6 +150,7 @@ body {
   .rating label .icon {
     float: left;
     color: transparent;
+    outline: 1px solid white; /* Add an outline to the stars */
   }
 
   .rating label:last-child .icon {
@@ -166,7 +167,7 @@ body {
     text-shadow: 0 0 5px #09f; /* You can adjust this as needed */
   }
 
-  
+
   /* textarea formatting */
   textarea {
     font-size: 16px; /* Adjust the size as needed */
