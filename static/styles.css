@@ -208,3 +208,10 @@ body .btn-primary {
     background-color: #DC143C;
     border: 1px solid white;
 }
+
+/* dividing line */
+        /* Style for the dividing line */
+        .divider {
+          border-top: 2px solid white; /* Change color and style as needed */
+          margin-bottom: 20px; /* Adjust the margin as needed */
+      }
