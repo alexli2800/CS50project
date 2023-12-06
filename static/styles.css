@@ -181,10 +181,10 @@ body {
     margin-top: 20px;
 }
 
-  /* remove bullet points on menu items */
-  ul {
-    list-style-type: none;
-  }
+ul {
+  list-style-type: none;
+  padding: 0 0px; /* Adjust the value as needed */
+}
 
 
 /* change submit button properties */
