@@ -67,7 +67,18 @@
         selectedRating = rating;
         document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
         }
-            </script>
+        // Remove the 'selected' class from all stars
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => star.classList.remove('selected'));
+
+        // Add the 'selected' class to the selected stars
+        for (let i = 1; i <= rating; i++) {
+            stars[i - 1].classList.add('selected');
+        }
+
+        document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
+    }
+</script>
 
         </div>
 
