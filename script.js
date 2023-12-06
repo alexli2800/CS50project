@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* make the submit button redirect home */
 function redirectToHome() {
+    console.log("Redirecting to home");
     // Add any additional logic or validation here if needed
 
     // Redirect to the home page
