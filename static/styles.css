@@ -154,13 +154,12 @@ body {
   .rate:not(:checked) > label:before {
       content: '\2605';
   }
-  .rate > input:checked ~ label {
-      color: #ffc700;
-  }
+  /* makes bright yellow color when selected and not hovered */
   .rate:not(:checked) > label:hover,
   .rate:not(:checked) > label:hover ~ label {
       color: #deb217;
   }
+  /* makes darker yellow color on stars when hovered */
   .rate > input:checked + label:hover,
   .rate > input:checked + label:hover ~ label,
   .rate > input:checked ~ label:hover,
