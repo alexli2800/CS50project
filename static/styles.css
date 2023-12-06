@@ -148,7 +148,7 @@ body {
   }
 
   .rating label .icon {
-    color: white;
+    color: transparent;
 }
 
   .rating label:last-child .icon {
