@@ -148,7 +148,7 @@ body {
   }
 
   .rating label .icon {
-    color: transparent;
+    color: white;
 }
 
   .rating label:last-child .icon {
@@ -172,8 +172,6 @@ body {
     height: 100px;
     width: 300px;
     margin-top: 20px;
-    padding: 0;
-    margin: 0;
 }
 
   /* remove bullet points on menu items */
