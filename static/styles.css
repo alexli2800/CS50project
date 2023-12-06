@@ -102,7 +102,6 @@ body {
 /* star */
 .rating {
     display: inline-block;
-    position: relative;
     height: 50px;
     line-height: 50px;
     font-size: 50px;
@@ -160,7 +159,7 @@ body {
 
   .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: gold;
-    text-shadow: 0 0 5px #09f; /* You can adjust this as needed */
+    text-shadow: 0 0 5px #09f; 
   }
 
 
