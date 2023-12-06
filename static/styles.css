@@ -109,7 +109,6 @@ body {
   }
 
   .rating label {
-    position: absolute;
     top: 0;
     left: 0;
     height: 100%;
@@ -141,7 +140,6 @@ body {
   }
 
   .rating label input {
-    position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
