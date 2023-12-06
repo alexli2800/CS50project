@@ -148,7 +148,7 @@
   }
 
   .star::before {
-    content: '\2605'; /* Unicode character for a star */
+    content: '\2605';
   }
 
   .star:hover::before,
@@ -157,6 +157,7 @@
     content: '\2605'; /* Change to filled star on hover */
     color: gold;
   }
+
 
   ul {
     list-style-type: none;
