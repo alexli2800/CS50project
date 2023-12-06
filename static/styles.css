@@ -153,7 +153,7 @@
 
   .star:hover::before,
   .star:hover ~ .star::before,
-  .star.selected::befores{
+  .star.selected::before {
     content: '\2605'; /* Change to filled star on hover */
     color: gold;
   }
