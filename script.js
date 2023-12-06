@@ -14,7 +14,7 @@ function redirectToHome() {
     // Add any additional logic or validation here if needed
 
     // Redirect to the home page
-    window.location.href = "home.html"; // Replace "/" with the actual URL of your home page
+    window.location.href = "/home.html"; // Replace "/" with the actual URL of your home page
     return false; // Prevent the form from submitting (if needed)
 }
 
