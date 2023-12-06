@@ -213,5 +213,6 @@ body .btn-primary {
         /* Style for the dividing line */
         .divider {
           border-top: 2px solid white; /* Change color and style as needed */
-          margin-bottom: 20px; /* Adjust the margin as needed */
+          margin-top: 30px;
+          margin-bottom: 30px; /* Adjust the margin as needed */
       }
