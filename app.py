@@ -447,7 +447,13 @@ def dinner():
         return redirect("/")
 
 
+@app.route("/submit_review", methods=["POST"])
+def submit_review():
+    # Handle the form submission logic here
+    # For example, you can process the form data, store it in the database, etc.
 
+    # Redirect to the home page after processing the form
+    return redirect(url_for("home"))  # Assuming you have a route named "home"
 
 
 
