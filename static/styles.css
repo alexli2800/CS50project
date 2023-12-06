@@ -101,32 +101,6 @@ body {
 }
 
 /* star rating */
-*{
-    margin: 0;
-    padding: 0;
-    font-family: ps;
-
-}
-
-.container {
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 10px 0px
-}
-
-.container .star {
-    display: flex;
-    grid-gap: 20px
-}
-
-.container .star a {
-    transition: .6s;
-    font-sie: 40px
-
-}
-
-}
-/* star rating
 
 .rating {
     unicode-bidi: bidi-override;
