@@ -165,31 +165,6 @@ body {
     color: #000;
     text-shadow: 0 0 5px #09f;
   }
-/* star rating
-
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    font-size: 30px;
-    color: white;
-  }
-
-  .star {
-    display: inline-block;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-
-  .star::before {
-    content: '\2605';
-  }
-
-  .star:hover::before,
-  .star:hover ~ .star::before,
-  .star.selected::before {
-    content: '\2605';
-    color: gold;
-  }
 
   /* remove bullet points on menu items */
   ul {
