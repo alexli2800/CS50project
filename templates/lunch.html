@@ -77,6 +77,12 @@
               <span class="icon">★</span>
             </label>
           </form>
+
+          <script>
+            $(':radio').change(function() {
+  console.log('New star rating: ' + this.value);
+});
+          </script>
 <!--
         <div class="rating">
             <form action="#" method="post" onsubmit="redirectToHome()">
