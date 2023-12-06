@@ -100,7 +100,17 @@ body {
     margin-top: 20px; /* Add margin above the image */
 }
 
-/* star rating 
+/* star rating */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: ps;
+
+}
+
+b
+
+/* star rating
 
 .rating {
     unicode-bidi: bidi-override;
