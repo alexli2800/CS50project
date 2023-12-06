@@ -44,10 +44,11 @@
                 <li>{{ row.recipe_name }}</li>
             {% endfor %}
         </ul>
-        <div style="padding-down: 30px;"></div>
+        <div style="padding-bottom: 40px;"></div>
+
+        <h2 id="content" style="color: white; font-family: Times New Roman;">Rate this Meal!</h2>
 
         <form class="rating">
-            <h2 id="content" style="color: white; font-family: Times New Roman;">Rate this Meal!</h2>
             <label>
                 <input type="radio" name="stars" value="1" />
                 <span class="icon">★</span>
@@ -78,7 +79,7 @@
                 <span class="icon">★</span>
                 <span class="icon">★</span>
             </label>
-
+        <div style="padding-bottom: 40px;"></div>
             <textarea id="review1" name="review1"></textarea>
             <div>
                 <button type="submit" class="custom-button btn btn-primary">Submit</button>
