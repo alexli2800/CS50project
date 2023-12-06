@@ -1,3 +1,9 @@
+/* background color */
+
+body {
+    background-color: black;
+}
+
 /* Add a box around the login section */
 .wrapper {
     border: 2px solid #ffffff; /* Set border color and width */
@@ -124,7 +130,8 @@
     margin-top: 20px; /* Add margin above the image */
 }
 
-
+/* star rating */
+@import url()
 /* change the size of the review textboxes */
 #review1 {
     height: 100px;
@@ -132,7 +139,7 @@
 }
 
 
-/* star rating */
+/* star rating
 
 .rating {
     unicode-bidi: bidi-override;
@@ -154,10 +161,10 @@
   .star:hover::before,
   .star:hover ~ .star::before,
   .star.selected::before {
-    content: '\2605'; /* Change to filled star on hover */
+    content: '\2605'; /* Change to filled star on hover
     color: gold;
   }
-
+ */
 
   ul {
     list-style-type: none;
