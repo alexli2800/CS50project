@@ -156,15 +156,16 @@ body {
     color: #000;
   }
 
-  .rating:not(:hover) label input:checked ~ .icon,
-  .rating:hover label:hover input ~ .icon {
-    color: #09f;
+  .rating label input:checked ~ .icon,
+  .rating label:hover input ~ .icon {
+    color: gold;
   }
 
   .rating label input:focus:not(:checked) ~ .icon:last-child {
-    color: #000;
-    text-shadow: 0 0 5px #09f;
+    color: gold;
+    text-shadow: 0 0 5px #09f; /* You can adjust this as needed */
   }
+
 
   /* remove bullet points on menu items */
   ul {
