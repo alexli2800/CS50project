@@ -1,19 +1,53 @@
-// star rating
 
- // Select all elements with the "i" tag and store them in a NodeList called "stars"
- const stars = document.querySelectorAll(".stars i");
- // Loop through the "stars" NodeList
- stars.forEach((star, index1) => {
-   // Add an event listener that runs a function when the "click" event is triggered
-   star.addEventListener("click", () => {
-     // Loop through the "stars" NodeList Again
-     stars.forEach((star, index2) => {
-       // Add the "active" class to the clicked star and any stars with a lower index
-       // and remove the "active" class from any stars with a higher index
-       index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
-     });
-   });
- });
+// to grab reviews from user
+
+document.querySelector('#rating1').addEventListener('click', function() {
+    // update rating
+});
+
+document.querySelector('#submit').addEventListener('click', function() {
+    // get text from text area
+    var review = document.querySelector('#review').value;
+});
+
+
+
+// For each radio button...
+document.querySelectorAll('.rating-button').forEach(function(button) {
+    // Add an event listener that runs a function when the button is clicked
+    button.addEventListener('click', function() {var clickedValue = parseInt(button.value);
+        // In the function...
+        // For each radio button...
+        document.querySelectorAll('.rating-button').forEach(function(btn) {
+            // If the button's value is less than or equal to the clicked button's value...
+            if (parseInt(btn.value) <= clickedValue) {
+                // Change the appearance of the button to make it look selected
+                btn.classList.add('selected');
+            } else {
+                // Reset the appearance for buttons with a higher value
+                btn.classList.remove('selected');
+            }
+        });
+    });
+});
+
+// For each radio button...
+// Add an event listener that updates the rating when the button is clicked
+document.querySelectorAll('.rating input').forEach(function(button) {
+button.addEventListener('click', function() {
+    var ratingValue = button.value;
+    // Update rating logic goes here
+    console.log('Rating Clicked:', ratingValue);
+});
+});
+
+// For the submit button... Add an event listener that gets the text from the textarea when the button is clicked
+document.querySelector('#submit1').addEventListener('click', function() {
+// Get text from textarea
+var review = document.querySelector('#review1').value;
+// Submit review logic goes here
+console.log('Review Submitted:', review);
+});
 
 /* redirect user to home page after submit */
 
