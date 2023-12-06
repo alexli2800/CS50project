@@ -453,7 +453,7 @@ def submit_review():
     # For example, you can process the form data, store it in the database, etc.
 
     # Redirect to the home page after processing the form
-    return redirect(url_for("home"))  # Assuming you have a route named "home"
+    return redirect(url_for("home.html"))  # Assuming you have a route named "home"
 
 
 
