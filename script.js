@@ -1,5 +1,5 @@
-// Select all elements with the class "stars" and their child elements with the class "fa-star"
-const stars = document.querySelectorAll(".stars .fa-star");
+// Select all elements with the class "stars" and their child elements with the class "fas"
+const stars = document.querySelectorAll(".stars .fas");
 
 // Loop through the "stars" NodeList
 stars.forEach((star, index1) => {
