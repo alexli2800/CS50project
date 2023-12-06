@@ -148,8 +148,7 @@ body {
   }
 
   .rating label .icon {
-    float: left;
-    color: transparent;
+    color: white;
 }
 
   .rating label:last-child .icon {
