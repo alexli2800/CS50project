@@ -230,9 +230,10 @@ def rating():
 @app.route("/lunch", methods=["GET", "POST"])
 @login_required
 def lunch():
+    user_id = session["user_id"]
     if request.method == "GET":
-        user_id = session["user_id"]
-
+        rating = request.form.get("rating")
+        review = request.form.get("review")
         # define formatted_date
         formatted_date = datetime.now().strftime('%m/%d/%Y')
         lunch_entree = db.execute("""
@@ -331,7 +332,7 @@ def lunch():
                             AND date = ?
                         """, (formatted_date))
 
-        rating()
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
         return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
