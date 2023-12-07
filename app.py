@@ -231,12 +231,13 @@ def rating():
 @login_required
 def lunch():
     user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
     if request.method == "POST":
         # define formatted_date
         rating = request.form.get("rating")
         review = request.form.get("review")
         db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
+
         lunch_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
