@@ -232,7 +232,6 @@ def rating():
 def lunch():
     user_id = session["user_id"]
     formatted_date = datetime.now().strftime('%m/%d/%Y')
-    print(request.method)
     if request.method == "POST":
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -345,11 +344,19 @@ def lunch():
 @app.route("/dinner", methods=["GET", "POST"])
 @login_required
 def dinner():
+    user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    if request.method == "POST":
+        rating = request.form.get("rating")
+        review = request.form.get("review")
+        if not rating:
+            return apology("Missing Rating", 400)
+        if not review:
+            return apology("Missing Review", 400)
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
     if request.method == "GET":
         user_id = session["user_id"]
 
-        # define formatted_date
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
         dinner_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
@@ -447,7 +454,6 @@ def dinner():
                             AND date = ?
                         """, (formatted_date))
 
-        rating()
         return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_halal=dinner_halal)
     else:
         return redirect("/")
