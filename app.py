@@ -189,6 +189,8 @@ def logout():
 @app.route("/")
 @login_required
 def home():
+    #if request.method == "POST":
+
     if request.method == "GET":
 
        # for item in data:
