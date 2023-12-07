@@ -239,7 +239,7 @@ def lunch():
             return apology("Missing Rating", 400)
         if not review:
             return apology("Missing Review", 400)
-        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, 'lunch')
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, "lunch")
     if request.method == "GET":
         # define formatted_date
         lunch_entree = db.execute("""
