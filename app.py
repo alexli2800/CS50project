@@ -185,56 +185,49 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
-def average():
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
-    count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ?", formatted_date)
-    if count[0]["COUNT(*)"] > 0:
-        average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
-        return average_rating
 
 @app.route("/")
 @login_required
 def home():
     if request.method == "GET":
-        user_id = session["user_id"]
-        # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
 
-        # first we need to be able to loop through the API and generate a list of say, the menu items
-        # to do this we need to index through everything, specify what we want, and return all those values in a single list
-        # then export the data to food.db
+        for item in data:
+            db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
 
-        #for item in data:
-        #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
-        return render_template("home.html")
+        formatted_date = datetime.now().strftime('%m/%d/%Y')
+        lunch_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
+        avg_lunch = None  # Initialize avg_lunch to None
+
+        if lunch_count[0]["COUNT(*)"] > 0:
+            avg_lunch_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
+            avg_lunch = round(avg_lunch_result[0]['AVG(rating)'], 2)
+
+        dinner_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
+        avg_dinner = None  # Initialize avg_dinner to None
+
+        if dinner_count[0]["COUNT(*)"] > 0:
+            avg_dinner_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
+            avg_dinner = round(avg_dinner_result[0]['AVG(rating)'], 2)
+
+        return render_template("home.html", avg_lunch=avg_lunch, avg_dinner=avg_dinner)
     else:
         return redirect("/")
-
-def rating():
-    # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
-    user_id = session["user_id"]
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
-    # get user input
-    rating = request.form.get("rating")
-    review = request.form.get("review")
-
-    # check if there is any input for rating and review
-    if not rating:
-        return apology("Missing Rating", 400)
-    if not 0 <= int(rating) <= 5:
-        return apology("Invalid Rating", 400)
-    if not review:
-        return apology("Missing Review", 400)
-
-    db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
 
 @app.route("/lunch", methods=["GET", "POST"])
 @login_required
 def lunch():
+    user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    if request.method == "POST":
+        rating = request.form.get("rating")
+        review = request.form.get("review")
+        if not rating:
+            return apology("Missing Rating", 400)
+        if not review:
+            return apology("Missing Review", 400)
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, "lunch")
     if request.method == "GET":
-        user_id = session["user_id"]
-
         # define formatted_date
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
         lunch_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
@@ -330,8 +323,6 @@ def lunch():
                             AND meal_category LIKE '%Halal%'
                             AND date = ?
                         """, (formatted_date))
-
-        rating()
         return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
@@ -339,11 +330,18 @@ def lunch():
 @app.route("/dinner", methods=["GET", "POST"])
 @login_required
 def dinner():
+    user_id = session["user_id"]
+    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    if request.method == "POST":
+        rating = request.form.get("rating")
+        review = request.form.get("review")
+        if not rating:
+            return apology("Missing Rating", 400)
+        if not review:
+            return apology("Missing Review", 400)
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, "dinner")
     if request.method == "GET":
-        user_id = session["user_id"]
 
-        # define formatted_date
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
         dinner_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
@@ -441,7 +439,6 @@ def dinner():
                             AND date = ?
                         """, (formatted_date))
 
-        rating()
         return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_halal=dinner_halal)
     else:
         return redirect("/")
