@@ -197,35 +197,14 @@ def average():
 def home():
     if request.method == "GET":
         user_id = session["user_id"]
-        # get access to the food items, date they are serverd, mealtime, where they are served and nutrition facts in a database
-
-        # first we need to be able to loop through the API and generate a list of say, the menu items
-        # to do this we need to index through everything, specify what we want, and return all those values in a single list
-        # then export the data to food.db
 
         #for item in data:
         #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
+
+
         return render_template("home.html")
     else:
         return redirect("/")
-
-def rating():
-    # when you rate the item, the form you use in the html gives you a number from 0 to 5 and you send that to the rating database
-    user_id = session["user_id"]
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
-    # get user input
-    rating = request.form.get("rating")
-    review = request.form.get("review")
-
-    # check if there is any input for rating and review
-    if not rating:
-        return apology("Missing Rating", 400)
-    if not 0 <= int(rating) <= 5:
-        return apology("Invalid Rating", 400)
-    if not review:
-        return apology("Missing Review", 400)
-
-    db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
 
 @app.route("/lunch", methods=["GET", "POST"])
 @login_required
