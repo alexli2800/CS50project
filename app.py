@@ -10,7 +10,6 @@ from functools import wraps
 from datetime import date
 
 
-
 def apology(message, code=400):
     """Render message as an apology to user."""
 
@@ -35,6 +34,7 @@ def apology(message, code=400):
 
     return render_template("apology.html", top=code, bottom=escape(message)), code
 
+
 def login_required(f):
     """
     Decorate routes to require login.
@@ -50,6 +50,7 @@ def login_required(f):
 
     return decorated_function
 
+
 # Configure application
 app = Flask(__name__)
 
@@ -63,16 +64,18 @@ Session(app)
 db = SQL("sqlite:///food.db")
 
 headers = {
-    'X-Api-Key': 'bf38CA83IGUGr9QH2eaGvOAYqGoo4lGD', "Accept": "application/json"
+    "X-Api-Key": "bf38CA83IGUGr9QH2eaGvOAYqGoo4lGD",
+    "Accept": "application/json",
 }
 
-response = requests.get('https://go.apis.huit.harvard.edu/ats/dining/v3/recipes', headers=headers)
+response = requests.get(
+    "https://go.apis.huit.harvard.edu/ats/dining/v3/recipes", headers=headers
+)
 
 if response.ok:
     data = response.json()
 else:
     print("Error: ", response.status_code)
-
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -112,6 +115,7 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -176,6 +180,8 @@ def register():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
+
+
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -186,40 +192,64 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
     if request.method == "POST":
         db.execute("DELETE FROM Meal")
         for item in data:
-            db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
+            db.execute(
+                "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
+                item["Serve_Date"],
+                item["Meal_Name"],
+                item["Location_Name"],
+                item["Recipe_Print_As_Name"],
+                item["Menu_Category_Name"],
+            )
         return "Data loaded successfully!"
     if request.method == "GET":
-
-        formatted_date = datetime.now().strftime('%m/%d/%Y')
-        lunch_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
+        formatted_date = datetime.now().strftime("%m/%d/%Y")
+        lunch_count = db.execute(
+            "SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?",
+            formatted_date,
+            "lunch",
+        )
         avg_lunch = None  # Initialize avg_lunch to None
 
         if lunch_count[0]["COUNT(*)"] > 0:
-            avg_lunch_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
-            avg_lunch = round(avg_lunch_result[0]['AVG(rating)'], 2)
+            avg_lunch_result = db.execute(
+                "SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?",
+                formatted_date,
+                "lunch",
+            )
+            avg_lunch = round(avg_lunch_result[0]["AVG(rating)"], 2)
 
-        dinner_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
+        dinner_count = db.execute(
+            "SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?",
+            formatted_date,
+            "dinner",
+        )
         avg_dinner = None  # Initialize avg_dinner to None
 
         if dinner_count[0]["COUNT(*)"] > 0:
-            avg_dinner_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
-            avg_dinner = round(avg_dinner_result[0]['AVG(rating)'], 2)
+            avg_dinner_result = db.execute(
+                "SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?",
+                formatted_date,
+                "dinner",
+            )
+            avg_dinner = round(avg_dinner_result[0]["AVG(rating)"], 2)
 
         return render_template("home.html", avg_lunch=avg_lunch, avg_dinner=avg_dinner)
     else:
         return redirect("/")
 
+
 @app.route("/lunch", methods=["GET", "POST"])
 @login_required
 def lunch():
     user_id = session["user_id"]
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    formatted_date = datetime.now().strftime("%m/%d/%Y")
     if request.method == "POST":
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -227,10 +257,18 @@ def lunch():
             return apology("Missing Rating", 400)
         if not review:
             return apology("Missing Review", 400)
-        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, "lunch")
+        db.execute(
+            "INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)",
+            user_id,
+            formatted_date,
+            rating,
+            review,
+            "lunch",
+        )
     if request.method == "GET":
         # define formatted_date
-        lunch_entree = db.execute("""
+        lunch_entree = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -248,9 +286,12 @@ def lunch():
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Entrees%'
                             AND date = ?
-                        """, (formatted_date))
+                        """,
+            (formatted_date),
+        )
 
-        lunch_vegetables = db.execute("""
+        lunch_vegetables = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -268,8 +309,11 @@ def lunch():
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Vegetables%'
                             AND date = ?
-                        """, (formatted_date))
-        lunch_starch = db.execute("""
+                        """,
+            (formatted_date),
+        )
+        lunch_starch = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -286,8 +330,11 @@ def lunch():
                             OR location_name LIKE '%Annenberg%')
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Starch And Potatoes%'
-                            AND date = ?                        """, (formatted_date))
-        lunch_vegan = db.execute("""
+                            AND date = ?                        """,
+            (formatted_date),
+        )
+        lunch_vegan = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -305,8 +352,11 @@ def lunch():
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
-                        """, (formatted_date))
-        lunch_halal = db.execute("""
+                        """,
+            (formatted_date),
+        )
+        lunch_halal = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -324,16 +374,26 @@ def lunch():
                             AND meal_time LIKE '%Lunch Entrees%'
                             AND meal_category LIKE '%Halal%'
                             AND date = ?
-                        """, (formatted_date))
-        return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
+                        """,
+            (formatted_date),
+        )
+        return render_template(
+            "lunch.html",
+            lunch_entree=lunch_entree,
+            lunch_vegetables=lunch_vegetables,
+            lunch_starch=lunch_starch,
+            lunch_vegan=lunch_vegan,
+            lunch_halal=lunch_halal,
+        )
     else:
         return redirect("/")
+
 
 @app.route("/dinner", methods=["GET", "POST"])
 @login_required
 def dinner():
     user_id = session["user_id"]
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
+    formatted_date = datetime.now().strftime("%m/%d/%Y")
     if request.method == "POST":
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -341,10 +401,17 @@ def dinner():
             return apology("Missing Rating", 400)
         if not review:
             return apology("Missing Review", 400)
-        db.execute("INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)", user_id, formatted_date, rating, review, "dinner")
+        db.execute(
+            "INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)",
+            user_id,
+            formatted_date,
+            rating,
+            review,
+            "dinner",
+        )
     if request.method == "GET":
-
-        dinner_entree = db.execute("""
+        dinner_entree = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -362,9 +429,12 @@ def dinner():
                             AND meal_time LIKE '%Dinner Entrees%'
                             AND meal_category LIKE '%Entrees%'
                             AND date = ?
-                        """, (formatted_date))
+                        """,
+            (formatted_date),
+        )
 
-        dinner_vegetables = db.execute("""
+        dinner_vegetables = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -382,8 +452,11 @@ def dinner():
                             AND meal_time LIKE '%Dinner Entrees%'
                             AND meal_category LIKE '%Vegetables%'
                             AND date = ?
-                        """, (formatted_date))
-        dinner_starch = db.execute("""
+                        """,
+            (formatted_date),
+        )
+        dinner_starch = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -401,8 +474,11 @@ def dinner():
                             AND meal_time LIKE '%Dinner Entrees%'
                             AND meal_category LIKE '%Starch And Potatoes%'
                             AND date = ?
-                        """, (formatted_date))
-        dinner_vegan = db.execute("""
+                        """,
+            (formatted_date),
+        )
+        dinner_vegan = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -420,8 +496,11 @@ def dinner():
                             AND meal_time LIKE '%Dinner Entrees%'
                             AND meal_category LIKE '%Veg,Vegan%'
                             AND date = ?
-                        """, (formatted_date))
-        dinner_halal = db.execute("""
+                        """,
+            (formatted_date),
+        )
+        dinner_halal = db.execute(
+            """
                             SELECT DISTINCT recipe_name FROM Meal
                             WHERE (location_name LIKE '%Adams%'
                             OR location_name LIKE '%Lowell%'
@@ -439,9 +518,18 @@ def dinner():
                             AND meal_time LIKE '%Dinner Entrees%'
                             AND meal_category LIKE '%Halal%'
                             AND date = ?
-                        """, (formatted_date))
+                        """,
+            (formatted_date),
+        )
 
-        return render_template("dinner.html", dinner_entree=dinner_entree, dinner_vegetables=dinner_vegetables, dinner_starch=dinner_starch, dinner_vegan=dinner_vegan, dinner_halal=dinner_halal)
+        return render_template(
+            "dinner.html",
+            dinner_entree=dinner_entree,
+            dinner_vegetables=dinner_vegetables,
+            dinner_starch=dinner_starch,
+            dinner_vegan=dinner_vegan,
+            dinner_halal=dinner_halal,
+        )
     else:
         return redirect("/")
 
@@ -452,12 +540,3 @@ def submit_review():
 
     # Redirect to home page after processing the form
     return redirect(url_for("home"))
-
-
-
-
-
-
-
-
-
