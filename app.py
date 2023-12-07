@@ -355,7 +355,6 @@ def dinner():
             return apology("Missing Review", 400)
         db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
     if request.method == "GET":
-        user_id = session["user_id"]
 
         dinner_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
