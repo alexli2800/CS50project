@@ -190,7 +190,8 @@ def logout():
 @login_required
 def home():
     if request.method == "POST":
-        
+        for item in data:
+            db.execute("TRUNCATE TABLE Meal")
         for item in data:
             db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
 
