@@ -186,12 +186,12 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
     if request.method == "POST":
+        db.execute("DELETE FROM Meal")
         for item in data:
-            db.execute("TRUNCATE TABLE Meal")
             db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
         return "Data loaded successfully!"
     if request.method == "GET":
