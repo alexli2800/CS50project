@@ -185,12 +185,6 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
-def average():
-    formatted_date = datetime.now().strftime('%m/%d/%Y')
-    count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ?", formatted_date)
-    if count[0]["COUNT(*)"] > 0:
-        average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
-        return average_rating
 
 @app.route("/")
 @login_required
@@ -201,6 +195,10 @@ def home():
         #for item in data:
         #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
 
+        formatted_date = datetime.now().strftime('%m/%d/%Y')
+        count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ?", formatted_date)
+        if count[0]["COUNT(*)"] > 0:
+            average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
 
         return render_template("home.html")
     else:
