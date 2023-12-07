@@ -45,36 +45,30 @@
             {% endfor %}
         </ul>
 
-        <div class="rating">
-            <form action="/dinner" method="post" onsubmit="redirectToHome()">
+        <div class="divider"></div>
 
-                <div class="rating">
-                    <div class="star" onclick="setRating(5)"></div>
-                    <div class="star" onclick="setRating(4)"></div>
-                    <div class="star" onclick="setRating(3)"></div>
-                    <div class="star" onclick="setRating(2)"></div>
-                    <div class="star" onclick="setRating(1)"></div>
-                  </div>
+        <h2 id="content" style="color: white; font-family: Oswald;">Rate this meal!</h2>
+        <form action="/submit_review" method="post" onsubmit="redirectToHome()">
+        <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rarating" value="1" />
+            <label for="star1" title="text">1 star</label>
+        </div>
 
-                  <p id="selectedRating">Selected Rating: 0</p>
+        <div style="padding-bottom: 40px;"></div>
 
-                <script>
-                    /* selecting star rating */
+        <textarea id="review1" name="review1" placeholder="Enter any additional comments here..."></textarea>
 
-                    let selectedRating = 0;
+        <div>
+            <button type="submit" class="custom-button btn btn-primary">Submit</button>
+        </div>
+    </form>
 
-                    function setRating(rating) {
-                    selectedRating = rating;
-                    document.getElementById('selectedRating').innerText = `Selected Rating: ${rating} stars`;
-                    }
-                </script>
-
-                <textarea id="review" name="review" placeholder="Review"></textarea>
-                <div>
-                    <button type="submit" class="custom-button btn btn-primary">Submit</button>
-                </div>
-            </form>
-    </div>
-
-</div>
 {% endblock %}

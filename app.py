@@ -1,7 +1,7 @@
 import os
 import re
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
@@ -448,7 +448,12 @@ def dinner():
         return redirect("/")
 
 
+@app.route("/submit_review", methods=["POST"])
+def submit_review():
+    # Handle the form submission logic here
 
+    # Redirect to home page after processing the form
+    return redirect(url_for("home"))
 
 
 

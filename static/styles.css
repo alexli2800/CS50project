@@ -100,21 +100,6 @@ body {
     margin-top: 20px; /* Add margin above the image */
 }
 /* star */
-.rating {
-    display: inline-block;
-    position: relative;
-    height: 50px;
-    line-height: 50px;
-    font-size: 50px;
-  }
-
-  .rating label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    cursor: pointer;
-  }
 
   .rating label:last-child {
     position: static;
@@ -140,21 +125,6 @@ body {
     z-index: 1;
   }
 
-  .rating label input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-  }
-
-  .rating label .icon {
-    color: white;
-}
-
-  .rating label:last-child .icon {
-    color: #000;
-  }
-
   .rating label input:checked ~ .icon,
   .rating label:hover input ~ .icon {
     color: gold;
@@ -162,7 +132,44 @@ body {
 
   .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: gold;
-    text-shadow: 0 0 5px #09f; /* You can adjust this as needed */
+    text-shadow: 0 0 5px #09f;
+  }
+
+  .rate {
+    padding: 20px 100px;
+  }
+
+  .rate:not(:checked) > input {
+      position:absolute;
+      top:-900px;
+  }
+  .rate:not(:checked) > label {
+      float:right;
+      width:1em;
+      overflow:hidden;
+      white-space:nowrap;
+      font-size:30px;
+      color:#ccc;
+  }
+  .rate:not(:checked) > label:before {
+      content: '\2605';
+  }
+  /* keeps stars yellow after selected */
+  .rate > input:checked ~ label {
+      color: #ffc700;
+  }
+  /* makes bright yellow color when selected and not hovered */
+  .rate:not(:checked) > label:hover,
+  .rate:not(:checked) > label:hover ~ label {
+      color: #deb217;
+  }
+  /* makes darker yellow color on stars when hovered */
+  .rate > input:checked + label:hover,
+  .rate > input:checked + label:hover ~ label,
+  .rate > input:checked ~ label:hover,
+  .rate > input:checked ~ label:hover ~ label,
+  .rate > label:hover ~ input:checked ~ label {
+      color: #c59b08;
   }
 
 
@@ -174,10 +181,10 @@ body {
     margin-top: 20px;
 }
 
-  /* remove bullet points on menu items */
-  ul {
-    list-style-type: none;
-  }
+ul {
+  list-style-type: none;
+  padding: 0 0px; /* Adjust the value as needed */
+}
 
 
 /* change submit button properties */
@@ -201,3 +208,11 @@ body .btn-primary {
     background-color: #DC143C;
     border: 1px solid white;
 }
+
+/* dividing line */
+        /* Style for the dividing line */
+        .divider {
+          border-top: 2px solid white; /* Change color and style as needed */
+          margin-top: 30px;
+          margin-bottom: 30px; /* Adjust the margin as needed */
+      }
