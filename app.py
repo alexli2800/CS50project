@@ -201,14 +201,14 @@ def home():
 
         if lunch_count[0]["COUNT(*)"] > 0:
             avg_lunch_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
-            avg_lunch = avg_lunch_result[0]['AVG(rating)']
+            avg_lunch = round(avg_lunch_result[0]['AVG(rating)'], 2)
 
         dinner_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
         avg_dinner = None  # Initialize avg_dinner to None
 
         if dinner_count[0]["COUNT(*)"] > 0:
             avg_dinner_result = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
-            avg_dinner = avg_dinner_result[0]['AVG(rating)']
+            avg_dinner = round(avg_dinner_result[0]['AVG(rating)'], 2)
 
         return render_template("home.html", avg_lunch=avg_lunch, avg_dinner=avg_dinner)
     else:
