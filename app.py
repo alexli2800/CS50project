@@ -235,6 +235,7 @@ def lunch():
         # define formatted_date
         rating = request.form.get("rating")
         review = request.form.get("review")
+        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
         formatted_date = datetime.now().strftime('%m/%d/%Y')
         lunch_entree = db.execute("""
                             SELECT DISTINCT recipe_name FROM Meal
@@ -331,7 +332,7 @@ def lunch():
                             AND meal_category LIKE '%Halal%'
                             AND date = ?
                         """, (formatted_date))
-        db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
+
         return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
