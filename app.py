@@ -196,9 +196,9 @@ def home():
         #    db.execute("INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)", item['Serve_Date'], item['Meal_Name'], item['Location_Name'], item['Recipe_Print_As_Name'], item['Menu_Category_Name'])
 
         formatted_date = datetime.now().strftime('%m/%d/%Y')
-        count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ?", formatted_date)
+        lunch_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
         if count[0]["COUNT(*)"] > 0:
-            average_rating = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ?", formatted_date)
+            avg_lunch = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
 
         return render_template("home.html")
     else:
