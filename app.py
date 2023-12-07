@@ -232,7 +232,8 @@ def rating():
 def lunch():
     user_id = session["user_id"]
     formatted_date = datetime.now().strftime('%m/%d/%Y')
-    if request.method == "POST":
+    print(request.method)
+    if request.method == "GET":
         # define formatted_date
         rating = request.form.get("rating")
         review = request.form.get("review")
@@ -333,7 +334,6 @@ def lunch():
                             AND meal_category LIKE '%Halal%'
                             AND date = ?
                         """, (formatted_date))
-
         return render_template("lunch.html", lunch_entree=lunch_entree, lunch_vegetables=lunch_vegetables, lunch_starch=lunch_starch, lunch_vegan=lunch_vegan, lunch_halal=lunch_halal)
     else:
         return redirect("/")
