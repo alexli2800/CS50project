@@ -231,7 +231,7 @@ def rating():
 @login_required
 def lunch():
     user_id = session["user_id"]
-    if request.method == "GET":
+    if request.method == "POST":
         # define formatted_date
         rating = request.form.get("rating")
         review = request.form.get("review")
