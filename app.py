@@ -236,6 +236,12 @@ def lunch():
     if request.method == "POST":
         rating = request.form.get("rating")
         review = request.form.get("review")
+        if not rating:
+            return apology("Missing Rating", 400)
+        if not 0 <= rating <= 5:
+            return apology("Invalid Rating", 400)
+        if not review:
+            return apology("Missing Review", 400)
         db.execute("INSERT INTO Ratings (user_id, date, rating, review) VALUES (?, ?, ?, ?)", user_id, formatted_date, rating, review)
     if request.method == "GET":
         # define formatted_date
