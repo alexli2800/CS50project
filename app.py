@@ -255,8 +255,6 @@ def lunch():
         review = request.form.get("review")
         if not rating:
             return apology("Missing Rating", 400)
-        if not review:
-            return apology("Missing Review", 400)
         db.execute(
             "INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)",
             user_id,
@@ -399,8 +397,6 @@ def dinner():
         review = request.form.get("review")
         if not rating:
             return apology("Missing Rating", 400)
-        if not review:
-            return apology("Missing Review", 400)
         db.execute(
             "INSERT INTO Ratings (user_id, date, rating, review, meal_time) VALUES (?, ?, ?, ?, ?)",
             user_id,
