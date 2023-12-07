@@ -26,18 +26,19 @@
 
 <!-- Two Buttons for Lunch & Dinner Selection -->
 <div class="container">
-    <div class="button-container">
-        <a href="/lunch" class="bigbutton btn btn-primary">Lunch</a>
-        {% if avg_lunch is not none %}
-            <p class="average-rating">{{ avg_lunch }}</p>
-        {% endif %}
-    </div>
-
-    <div class="button-container">
-        <a href="/dinner" class="bigbutton btn btn-primary">Dinner</a>
-        {% if avg_dinner is not none %}
-            <p class="average-rating">{{ avg_dinner }}</p>
-        {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/lunch" class="bigbutton btn btn-primary">Lunch</a>
+            {% if avg_lunch is not none %}
+                <p class="average-rating" style="color: white; font-family: Oswald;">{{ avg_lunch }}</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <a href="/dinner" class="bigbutton btn btn-primary">Dinner</a>
+            {% if avg_dinner is not none %}
+                <p class="average-rating" style="color: white; font-family: Oswald;">{{ avg_dinner }}</p>
+            {% endif %}
+        </div>
     </div>
 </div>
 
