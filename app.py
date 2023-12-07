@@ -197,8 +197,12 @@ def home():
 
         formatted_date = datetime.now().strftime('%m/%d/%Y')
         lunch_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
-        if count[0]["COUNT(*)"] > 0:
+        if lunch_count[0]["COUNT(*)"] > 0:
             avg_lunch = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "lunch")
+
+        dinner_count = db.execute("SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
+        if dinner_count[0]["COUNT(*)"] > 0:
+            avg_dinner = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
 
         return render_template("home.html")
     else:
