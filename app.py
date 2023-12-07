@@ -204,7 +204,7 @@ def home():
         if dinner_count[0]["COUNT(*)"] > 0:
             avg_dinner = db.execute("SELECT AVG(rating) FROM ratings WHERE date = ? AND meal_time = ?", formatted_date, "dinner")
 
-        return render_template("home.html")
+        return render_template("home.html", avg_lunch=avg_lunch, avg_dinner=avg_dinner)
     else:
         return redirect("/")
 
