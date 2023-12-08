@@ -171,9 +171,9 @@ def register():
 
         # store their user id
         session["user_id"] = db.execute(
-            "SELECT user_id FROM users WHERE username = :username",
+            "SELECT id FROM users WHERE username = :username",
             username=request.form.get("username"),
-        )[0]["user_id"]
+        )[0]["id]
         # Redirect user to home page
         return redirect("/")
 
