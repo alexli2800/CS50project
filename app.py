@@ -200,16 +200,16 @@ def home():
     if request.method == "POST":
         db.execute("DELETE FROM Meal")
         for item in data:
-            serve_date = item.get("Serve_Date", "")  # Assuming Serve_Date is the field containing date information
+            serve_date = item.get("Serve_Date", "")  
             if serve_date == formatted_date:
-            db.execute(
-                "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
-                formatted_date,
-                item["Meal_Name"],
-                item["Location_Name"],
-                item["Recipe_Print_As_Name"],
-                item["Menu_Category_Name"],
-            )
+                db.execute(
+                    "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
+                    serve_date,
+                    item["Meal_Name"],
+                    item["Location_Name"],
+                    item["Recipe_Print_As_Name"],
+                    item["Menu_Category_Name"],
+                )
         return "Data loaded successfully!"
     if request.method == "GET":
         lunch_count = db.execute(
