@@ -193,10 +193,6 @@ def logout():
     return redirect("/")
 
 @app.route("/", methods=["GET", "POST"])
-def index():
-    return redirect("/generate_data")
-
-@app.route("/generate_data", methods=["GET", "POST"])
 @login_required
 def generate_data():
     if request.method == "POST":
