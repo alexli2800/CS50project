@@ -192,6 +192,10 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+@app.route("/", methods=["GET", "POST"])
+def index():
+    return redirect("/generate_data")
+
 @app.route("/generate_data", methods=["GET", "POST"])
 @login_required
 def generate_data():
@@ -211,11 +215,11 @@ def generate_data():
                     item["Recipe_Print_As_Name"],
                     item["Menu_Category_Name"],
                 )
-        return redirect("/")
+        return redirect("/home")
 
     return render_template("loading.html")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
 @login_required
 def home():
     formatted_date = datetime.now().strftime("%m/%d/%Y")
@@ -252,7 +256,7 @@ def home():
 
         return render_template("home.html", avg_lunch=avg_lunch, avg_dinner=avg_dinner)
     else:
-        return redirect("/")
+        return redirect("/home")
 
 
 @app.route("/lunch", methods=["GET", "POST"])
@@ -394,7 +398,7 @@ def lunch():
             lunch_halal=lunch_halal,
         )
     else:
-        return redirect("/")
+        return redirect("/home")
 
 
 @app.route("/dinner", methods=["GET", "POST"])
@@ -537,7 +541,7 @@ def dinner():
             dinner_halal=dinner_halal,
         )
     else:
-        return redirect("/")
+        return redirect("/home")
 
 
 @app.route("/submit_review", methods=["POST"])
