@@ -6,11 +6,11 @@ body {
 
 /* Add a box around sections */
 .wrapper {
-    border: 2px solid #ffffff; /* Set border color and width */
-    padding: 20px; /* Add padding inside the box */
-    margin: auto; /* Center the box horizontally */
-    max-width: 400px; /* Set a maximum width for the box */
-    background-color: black; /* Set background color */
+    border: 2px solid #ffffff;
+    padding: 20px;
+    margin: auto;
+    max-width: 400px;
+    background-color: black;
 }
 
 .bigbutton {
@@ -19,14 +19,14 @@ body {
     font-size: 25px;
     font-family: Lucida;
     background-color: #DC143C;
-    color: white; /* text color */
-    text-align: center; /* to center the text */
-    padding: 32px 32px; /* top/bottom, left/right padding */
-    text-decoration: none; /* remove text underline */
+    color: white;
+    text-align: center;
+    padding: 32px 32px;
+    text-decoration: none;
 }
 
-.container{
-    height:500px;
+.container {
+    height: 500px;
     width: 645px;
     justify-content: center;
     align-items: center;
@@ -41,7 +41,7 @@ body {
 }
 
 .selected {
-    color: white; /* text color */
+    color: white;
     background-color: blue;
 }
 
@@ -91,111 +91,117 @@ body {
 .image-outside-login {
     max-width: 100%;
     height: auto;
-    margin-bottom: 20px; /* Adjust the margin as needed */
-    margin-top: 20px; /* Add margin above the image */
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
+
 /* star */
 
-  .rating label:last-child {
+.rating label:last-child {
     position: static;
-  }
+}
 
-  .rating label:nth-child(1) {
+.rating label:nth-child(1) {
     z-index: 5;
-  }
+}
 
-  .rating label:nth-child(2) {
+.rating label:nth-child(2) {
     z-index: 4;
-  }
+}
 
-  .rating label:nth-child(3) {
+.rating label:nth-child(3) {
     z-index: 3;
-  }
+}
 
-  .rating label:nth-child(4) {
+.rating label:nth-child(4) {
     z-index: 2;
-  }
+}
 
-  .rating label:nth-child(5) {
+.rating label:nth-child(5) {
     z-index: 1;
-  }
+}
 
-  .rating label input:checked ~ .icon,
-  .rating label:hover input ~ .icon {
+.rating label input:checked~.icon,
+.rating label:hover input~.icon {
     color: gold;
-  }
+}
 
-  .rating label input:focus:not(:checked) ~ .icon:last-child {
+.rating label input:focus:not(:checked)~.icon:last-child {
     color: gold;
     text-shadow: 0 0 5px #09f;
-  }
+}
 
-  .rate {
+.rate {
     padding: 20px 100px;
-  }
+}
 
-  .rate:not(:checked) > input {
-      position:absolute;
-      top:-900px;
-  }
-  .rate:not(:checked) > label {
-      float:right;
-      width:1em;
-      overflow:hidden;
-      white-space:nowrap;
-      font-size:30px;
-      color:#ccc;
-  }
-  .rate:not(:checked) > label:before {
-      content: '\2605';
-  }
-  /* keeps stars yellow after selected */
-  .rate > input:checked ~ label {
-      color: #ffc700;
-  }
-  /* makes bright yellow color when selected and not hovered */
-  .rate:not(:checked) > label:hover,
-  .rate:not(:checked) > label:hover ~ label {
-      color: #deb217;
-  }
-  /* makes darker yellow color on stars when hovered */
-  .rate > input:checked + label:hover,
-  .rate > input:checked + label:hover ~ label,
-  .rate > input:checked ~ label:hover,
-  .rate > input:checked ~ label:hover ~ label,
-  .rate > label:hover ~ input:checked ~ label {
-      color: #c59b08;
-  }
+.rate:not(:checked)>input {
+    position: absolute;
+    top: -900px;
+}
+
+.rate:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+    content: '\2605';
+}
+
+/* keeps stars yellow after selected */
+.rate>input:checked~label {
+    color: #ffc700;
+}
+
+/* makes bright yellow color when selected and not hovered */
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+    color: #deb217;
+}
+
+/* makes darker yellow color on stars when hovered */
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+    color: #c59b08;
+}
 
 
-  /* textarea formatting */
-  textarea {
-    font-size: 16px; /* Adjust the size as needed */
+/* textarea formatting */
+textarea {
+    font-size: 16px;
     height: 100px;
     width: 300px;
     margin-top: 20px;
 }
 
 ul {
-  list-style-type: none;
-  padding: 0 0px; /* Adjust the value as needed */
+    list-style-type: none;
+    padding: 0 0px;
 }
 
 
 /* change submit button properties */
-  .custom-button {
-      background-color: #DC143C;
-      color: #fff;
-      height: 50px;
-      width: 100px;
-  }
+.custom-button {
+    background-color: #DC143C;
+    color: #fff;
+    height: 50px;
+    width: 100px;
+}
 
 /* change btn-primary properties (makes it look like a button)*/
 body .btn-primary {
     background-color: #DC143C;
     outline: none;
     border: 1px solid transparent;
-  }
+}
 
 .btn-primary:hover,
 .btn-primary:active,
@@ -204,10 +210,9 @@ body .btn-primary {
     border: 1px solid white;
 }
 
-/* dividing line */
-        /* Style for the dividing line */
-        .divider {
-          border-top: 2px solid white; /* Change color and style as needed */
-          margin-top: 30px;
-          margin-bottom: 30px; /* Adjust the margin as needed */
-      }
+/* Style for the dividing line */
+.divider {
+    border-top: 2px solid white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
