@@ -10,63 +10,63 @@
     <h1 style="color: white; font-family: Oswald;" id="contact">HUDS HUB</h1>
 
 <!-- Display Date -->
-<p id="date" style="color: white; font-family: Oswald;"></p>
-<script>
-    document.getElementById('date').textContent = new Date().toLocaleDateString();
-</script>
+    <p id="date" style="color: white; font-family: Oswald;"></p>
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString();
+    </script>
 
-<h2 id="contant" style="color: white; font-family: Oswald;">SELECT A MEAL!</h2>
+    <h2 id="contant" style="color: white; font-family: Oswald;">SELECT A MEAL!</h2>
 
 <!-- Video background -->
-<div class="video-background">
-    <div class="video-foreground">
-    <iframe src="https://www.youtube.com/embed/b65MoVwANq4?&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&start=150" allowfullscreen></iframe>
-    </div>
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/b65MoVwANq4?&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&start=150" allowfullscreen></iframe>
+        </div>
     </div>
 
 <!-- Two Buttons for Lunch & Dinner Selection -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/lunch" class="bigbutton btn btn-primary">Lunch</a>
-            {% if avg_lunch is not none %}
-                <p class="average-rating" style="color: white; font-family: Oswald; font-size: 20px;">Average Rating: {{ avg_lunch }}</p>
-            {% endif %}
-        </div>
-        <div class="col-md-6">
-            <a href="/dinner" class="bigbutton btn btn-primary">Dinner</a>
-            {% if avg_dinner is not none %}
-                <p class="average-rating" style="color: white; font-family: Oswald; font-size: 20px;">Average Rating: {{ avg_dinner }}</p>
-            {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/lunch" class="bigbutton btn btn-primary">Lunch</a>
+                {% if avg_lunch is not none %}
+                    <p class="average-rating" style="color: white; font-family: Oswald; font-size: 20px;">Average Rating: {{ avg_lunch }}</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <a href="/dinner" class="bigbutton btn btn-primary">Dinner</a>
+                {% if avg_dinner is not none %}
+                    <p class="average-rating" style="color: white; font-family: Oswald; font-size: 20px;">Average Rating: {{ avg_dinner }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Button to Load SQL Query -->
-<button id="loadQueryButton" class="btn btn-primary">Load HUDS Data</button>
+    <button id="loadQueryButton" class="btn btn-primary">Load HUDS Data</button>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function() {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
         // Function to handle the button click event
-        $("#loadQueryButton").click(function() {
+            $("#loadQueryButton").click(function() {
             // Make an asynchronous request to the server with POST method
-            $.ajax({
-                type: "POST",
-                url: "/",  // Update with your server route
-                data: {},  // You can pass data if needed
-                success: function(response) {
+                $.ajax({
+                    type: "POST",
+                    url: "/", // Update with your server route
+                    data: {}, // You can pass data if needed
+                    success: function(response) {
                     // Handle the response from the server (if needed)
-                    console.log(response);
-                },
-                error: function(error) {
+                        console.log(response);
+                    },
+                    error: function(error) {
                     // Handle errors (if any)
-                    console.error("Error:", error);
-                }
+                        console.error("Error:", error);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
 

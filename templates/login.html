@@ -5,26 +5,26 @@
 {% endblock %}
 
 {% block main %}
-<div class="wrapper">
-<h1 style="color: white; font-family: Oswald;" id="contact">Login</h1>
-    <form action="/login" method="post" style="background-color: black;">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-            <i class='bx bxs-user bx-flip-horizontal' style='color:#ffffff' ></i>
+    <div class="wrapper">
+        <h1 style="color: white; font-family: Oswald;" id="contact">Login</h1>
+        <form action="/login" method="post" style="background-color: black;">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+                <i class='bx bxs-user bx-flip-horizontal' style='color:#ffffff'></i>
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+                <i class='bx bxs-lock-alt' style='color:#ffffff'></i>
+            </div>
+            <div>
+                <div style="margin-bottom: 20px;">
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Log In</button>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-            <i class='bx bxs-lock-alt' style='color:#ffffff'  ></i>
-        </div>
-        <div>
-        <div style="margin-bottom: 20px;">
-        </div>
-        <div>
-            <button class="btn btn-primary" type="submit">Log In</button>
-        </div>
-    </form>
-</div>
 
 <!-- Add an image outside the form -->
-<img src="/static/annenberg.png" alt="Annenberg" class="image-outside-login">
+        <img src="/static/annenberg.png" alt="Annenberg" class="image-outside-login">
 {% endblock %}
