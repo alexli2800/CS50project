@@ -200,7 +200,7 @@ def index():
 @login_required
 def generate_data():
     if request.method == "POST":
-
+        time.sleep(2)
         db.execute("DELETE FROM Meal")
         formatted_date = datetime.now().strftime("%m/%d/%Y")
 
