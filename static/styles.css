@@ -4,7 +4,7 @@ body {
     background-color: black;
 }
 
-/* Add a box around the login section */
+/* Add a box around sections */
 .wrapper {
     border: 2px solid #ffffff; /* Set border color and width */
     padding: 20px; /* Add padding inside the box */
@@ -12,11 +12,6 @@ body {
     max-width: 400px; /* Set a maximum width for the box */
     background-color: black; /* Set background color */
 }
-
-/* Add space between "Forgot password?" and the button */
-.forgot-password {
-    margin-top: 20px; /* Adjust the margin as needed */
-        }
 
 .bigbutton {
     height: 100px;
