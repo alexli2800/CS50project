@@ -196,12 +196,13 @@ def logout():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
+    formatted_date = datetime.now().strftime("%m/%d/%Y")
     if request.method == "POST":
         db.execute("DELETE FROM Meal")
         for item in data:
             db.execute(
                 "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
-                item["Serve_Date"],
+                formatted_date,
                 item["Meal_Name"],
                 item["Location_Name"],
                 item["Recipe_Print_As_Name"],
@@ -209,7 +210,6 @@ def home():
             )
         return "Data loaded successfully!"
     if request.method == "GET":
-        formatted_date = datetime.now().strftime("%m/%d/%Y")
         lunch_count = db.execute(
             "SELECT COUNT(*) FROM ratings WHERE date = ? AND meal_time = ?",
             formatted_date,
