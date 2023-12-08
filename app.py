@@ -200,6 +200,8 @@ def home():
     if request.method == "POST":
         db.execute("DELETE FROM Meal")
         for item in data:
+            serve_date = item.get("Serve_Date", "")  # Assuming Serve_Date is the field containing date information
+            if serve_date == formatted_date:
             db.execute(
                 "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
                 formatted_date,
