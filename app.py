@@ -1134,4 +1134,3 @@ def submit_review():
     # Redirect to home page after processing the form
     return redirect(url_for("home"))
 
-
