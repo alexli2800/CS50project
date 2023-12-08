@@ -77,6 +77,46 @@ if response.ok:
 else:
     print("Error: ", response.status_code)
 
+@app.route("/", methods=["GET", "POST"])
+@login_required
+def generate_data():
+    if request.method == "POST":
+        time.sleep(2)
+        db.execute("DELETE FROM Meal")
+        formatted_date = datetime.now().strftime("%m/%d/%Y")
+
+        valid_locations = [
+            '%Adams%',
+            '%Lowell%',
+            '%Quincy%',
+            '%Leverett%',
+            '%Mather%',
+            '%Dunster%',
+            '%Eliot%',
+            '%Kirkland%',
+            '%Winthrop%',
+            '%Cabot%',
+            '%Pforzheimer%',
+            '%Currier%',
+            '%Annenberg%'
+        ]
+
+        for item in data:
+            serve_date = item.get("Serve_Date", "")
+            location_name = item.get("Location_Name", "")
+            if (serve_date == formatted_date and any(location in location_name for location in valid_locations)):
+                db.execute(
+                    "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
+                    formatted_date,
+                    item["Meal_Name"],
+                    location_name,
+                    item["Recipe_Print_As_Name"],
+                    item["Menu_Category_Name"],
+                )
+        return redirect("/home")
+    else:
+        return render_template("loading.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -192,45 +232,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@app.route("/", methods=["GET", "POST"])
-@login_required
-def generate_data():
-    if request.method == "POST":
-        time.sleep(2)
-        db.execute("DELETE FROM Meal")
-        formatted_date = datetime.now().strftime("%m/%d/%Y")
 
-        valid_locations = [
-            '%Adams%',
-            '%Lowell%',
-            '%Quincy%',
-            '%Leverett%',
-            '%Mather%',
-            '%Dunster%',
-            '%Eliot%',
-            '%Kirkland%',
-            '%Winthrop%',
-            '%Cabot%',
-            '%Pforzheimer%',
-            '%Currier%',
-            '%Annenberg%'
-        ]
-
-        for item in data:
-            serve_date = item.get("Serve_Date", "")
-            location_name = item.get("Location_Name", "")
-            if (serve_date == formatted_date and any(location in location_name for location in valid_locations)):
-                db.execute(
-                    "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
-                    formatted_date,
-                    item["Meal_Name"],
-                    location_name,
-                    item["Recipe_Print_As_Name"],
-                    item["Menu_Category_Name"],
-                )
-        return redirect("/home")
-    else:
-        return render_template("loading.html")
 
 @app.route("/home", methods=["GET", "POST"])
 @login_required
