@@ -192,7 +192,29 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+@app.route("/generate_data", methods=["GET", "POST"])
+def generate_data():
+    if request.method == "POST":
+        # Simulated API call delay (replace with actual API call)
+        time.sleep(2)
 
+        db.execute("DELETE FROM Meal")
+        formatted_date = datetime.now().strftime("%m/%d/%Y")
+
+        for item in data:
+            serve_date = item.get("Serve_Date", "")
+            if serve_date == formatted_date:
+                db.execute(
+                    "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
+                    formatted_date,
+                    item["Meal_Name"],
+                    item["Location_Name"],
+                    item["Recipe_Print_As_Name"],
+                    item["Menu_Category_Name"],
+                )
+        return redirect("/")
+
+    return render_template("loading.html")
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
@@ -200,7 +222,7 @@ def home():
     if request.method == "POST":
         db.execute("DELETE FROM Meal")
         for item in data:
-            serve_date = item.get("Serve_Date", "")  
+            serve_date = item.get("Serve_Date", "")
             if serve_date == formatted_date:
                 db.execute(
                     "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
