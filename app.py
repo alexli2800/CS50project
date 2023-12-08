@@ -110,7 +110,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
-        return redirect("/generate_data")
+        return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -175,7 +175,7 @@ def register():
             username=request.form.get("username"),
         )[0]["user_id"]
         # Redirect user to home page
-        return redirect("/generate_data")
+        return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
