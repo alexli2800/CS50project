@@ -204,14 +204,31 @@ def generate_data():
         db.execute("DELETE FROM Meal")
         formatted_date = datetime.now().strftime("%m/%d/%Y")
 
+        valid_locations = [
+            '%Adams%',
+            '%Lowell%',
+            '%Quincy%',
+            '%Leverett%',
+            '%Mather%',
+            '%Dunster%',
+            '%Eliot%',
+            '%Kirkland%',
+            '%Winthrop%',
+            '%Cabot%',
+            '%Pforzheimer%',
+            '%Currier%',
+            '%Annenberg%'
+        ]
+
         for item in data:
             serve_date = item.get("Serve_Date", "")
-            if serve_date == formatted_date:
+            location_name = item.get("Location_Name", "")
+            if (serve_date == formatted_date and any(location in location_name for location in valid_locations)):
                 db.execute(
                     "INSERT INTO Meal (date, meal_time, location_name, recipe_name, meal_category) VALUES (?, ?, ?, ?, ?)",
                     formatted_date,
                     item["Meal_Name"],
-                    item["Location_Name"],
+                    location_name,
                     item["Recipe_Print_As_Name"],
                     item["Menu_Category_Name"],
                 )
