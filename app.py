@@ -199,7 +199,7 @@ def index():
 @app.route("/generate_data", methods=["GET", "POST"])
 @login_required
 def generate_data():
-    if request.method == "GET":
+    if request.method == "POST":
 
         db.execute("DELETE FROM Meal")
         formatted_date = datetime.now().strftime("%m/%d/%Y")
